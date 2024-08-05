@@ -36,6 +36,9 @@ Perfect Fit Resumes/CVs is a web application designed to help job seekers create
 ## Architecture diagram
 ![Architecture Diagram](/Burndown/cs179karchitecture.jpg)
 
+## Burndown Chart
+![Architecture Diagram](/Burndown/BurnChart08:05.png)
+
 ## Team Members
 * [Minh Ho](https://github.com/mnvho)
 * [Xing Shi](https://github.com/xing-coder)
