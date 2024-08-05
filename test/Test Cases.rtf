@@ -1,0 +1,158 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2759
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww30040\viewh16320\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 User Story 1:\
+As a user, I want an interface so I can make changes effortlessly.\
+\
+Unit Tests:\
+1. Does the website load:\
+   - Test: Verify that the main page loads successfully.\
+   - Expected Result: The main page returns a status code of 200.\
+\
+2. Does the front end input accept files:\
+   - Test: Upload a sample resume file through the front end input.\
+   - Expected Result: The file is successfully uploaded and the correct response is returned.\
+\
+3. Does the front end output give files:\
+   - Test: Request the generated resume file from the front end output.\
+   - Expected Result: The file is successfully downloaded and matches the expected output format.\
+\
+\
+User Story 2:\
+As a user, I want to match my skills and experiences to specific job descriptions, so I can create a resume that aligns perfectly with each job application.\
+\
+Unit Tests:\
+1. Match skills and experiences to job description:\
+   - Test: Input a resume and a job description, and request a matched resume.\
+   - Expected Result: The returned resume highlights the skills and experiences relevant to the job description.\
+\
+2. Verify skill matching accuracy:\
+   - Test: Provide a resume with specific skills and a job description requiring those skills.\
+   - Expected Result: The generated resume correctly includes the matching skills from the resume.\
+\
+3. Handle incomplete job descriptions:\
+   - Test: Input a resume and an incomplete job description.\
+   - Expected Result: The system generates a resume with the best possible match, handling missing information gracefully.\
+\
+\
+User Story 3:\
+As a user, I want to input my resume/cv, so the algorithm can pick out my experiences and skills to match the job.\
+\
+Unit Tests:\
+1. Resume upload functionality:\
+   - Test: Upload a resume file to the system.\
+   - Expected Result: The file is uploaded successfully and processed without errors.\
+\
+2. Extract experiences and skills:\
+   - Test: Input a resume and request extraction of experiences and skills.\
+   - Expected Result: The system correctly identifies and lists all experiences and skills from the resume.\
+\
+3. Validate extracted data accuracy:\
+   - Test: Input a resume with known experiences and skills.\
+   - Expected Result: The extracted data matches the known information in the resume.\
+\
+\
+User Story 4:\
+As a user, I want to input the job description, so the algorithm can adjust the resume/cv accordingly.\
+\
+Unit Tests:\
+1. Job description input functionality:\
+   - Test: Input a job description into the system.\
+   - Expected Result: The job description is accepted and processed without errors.\
+\
+2. Adjust resume based on job description:\
+   - Test: Input a resume and a job description, and request an adjusted resume.\
+   - Expected Result: The system generates a resume adjusted to the job description.\
+\
+3. Verify adjustment accuracy:\
+   - Test: Input a resume and a detailed job description.\
+   - Expected Result: The adjusted resume accurately reflects the requirements of the job description.\
+\
+\
+User Story 5:\
+As a user, I want to receive my tailored resume/cv, so I can submit it to the job application.\
+\
+Unit Tests:\
+1. Tailored resume generation:\
+   - Test: Input a resume and a job description, and request a tailored resume.\
+   - Expected Result: The system generates and returns a tailored resume.\
+\
+2. Verify tailored resume content:\
+   - Test: Compare the tailored resume to the input job description.\
+   - Expected Result: The tailored resume includes relevant skills and experiences for the job.\
+\
+3. Output format validation:\
+   - Test: Request a tailored resume in a specific format (e.g., PDF).\
+   - Expected Result: The tailored resume is returned in the correct format and is properly formatted.\
+\
+\
+User Story 6:\
+As a user, I want to be able to choose to create a resume, CV, or both, so that I get exactly what I want.\
+\
+Unit Tests:\
+1. Resume creation option:\
+   - Test: Choose to create only a resume.\
+   - Expected Result: The system generates only a resume.\
+\
+2. CV creation option:\
+   - Test: Choose to create only a CV.\
+   - Expected Result: The system generates only a CV.\
+\
+3. Both resume and CV creation option:\
+   - Test: Choose to create both a resume and a CV.\
+   - Expected Result: The system generates both a resume and a CV.\
+\
+\
+User Story 7:\
+As a user, I want to have different formats supported for my resume/cv, so it is convenient for me.\
+\
+Unit Tests:\
+1. Support for multiple formats:\
+   - Test: Request the resume/CV in different formats.\
+   - Expected Result: The system supports and generates the requested formats.\
+\
+2. Format conversion accuracy:\
+   - Test: Input a resume and request it in a different format.\
+   - Expected Result: The content remains accurate and well-formatted in the new format.\
+\
+3. Error handling for unsupported formats:\
+   - Test: Request the resume/CV in an unsupported format.\
+   - Expected Result: The system provides a clear error message indicating the unsupported format.\
+\
+\
+User Story 8:\
+As a user, I want to export my customized resume in multiple formats, so I can meet the requirements of different job applications easily.\
+\
+Unit Tests:\
+1. Export functionality:\
+   - Test: Export a customized resume in multiple formats.\
+   - Expected Result: The resume is successfully exported in the requested formats.\
+\
+2. Verify exported file integrity:\
+   - Test: Check the integrity of the exported files.\
+   - Expected Result: The exported files are not corrupted and open correctly.\
+\
+3. Format-specific customization:\
+   - Test: Customize the resume for different formats (e.g., different layouts for PDF and DOCX).\
+   - Expected Result: The system supports format-specific customization and generates the appropriate layouts.\
+\
+\
+User Story 9:\
+As a user, I want to receive multiple suggestions on keywords for my resume, so that it will pass automated resume checks.\
+\
+Unit Tests:\
+1. Keyword suggestion generation:\
+   - Test: Input a resume and request keyword suggestions.\
+   - Expected Result: The system generates relevant keyword suggestions.\
+\
+2. Verify relevance of suggested keywords:\
+   - Test: Check the relevance of the suggested keywords against the job description.\
+   - Expected Result: The suggested keywords are relevant to the job description and industry.\
+\
+3. Multiple suggestions for varying job descriptions:\
+   - Test: Input different job descriptions and request keyword suggestions.\
+   - Expected Result: The system generates varied keyword suggestions tailored to each job description.}
