@@ -1,0 +1,67 @@
+____ user stories ____
+
+"As a user, I want to use website, so it is easy and convenient for me (Story points: 6)"
+The phrasing on some of your user stories are half way between functional and non functional requirements.
+
+
+"As a user, I want to match my skills and experiences to specific job descriptions, so I can create a resume that aligns perfectly with each job application. (Story points: 5)"
+The phrasing is a bit misleading.
+It sounds like the user is matching their own skills to the job description.
+And once they've matched their skills, they can create a resume that aligns with each job application.
+
+But we might mean instead that:
+The user wants to use <insert product feature/capability> to tailor their resume to a specific job application.
+So that hey have increased chances of landing an interview.
+
+
+"As a user, I want to input my resume/cv, so the algorithm can pick out my experiences and skills to match the job (Story points: 3)"
+I can't quite tell if you guys are matching resumes to jobs, or altering resumes in this.
+Are we tailoring resumes, or doing job searches based on resumes?
+
+"As a user, I want to receive my tailored resume/cv, so I can submit it to the job application (Story points: 3)"
+This seems like a rephrasing of the same functional requirement.
+Remember we want to think of "user stories" as orthogonal (non overlapping) functions which our product performs for the user.
+
+"As a user, I want to be able to choose to create a resume, cv, or both, so that that I get exactly what I want (Story points: 1)"
+This is on the right track, but we could alter it to something like:
+As a user, I want to tailor my cv using <insert product feature here> in the same ways it would tailor my resume, so that <desired user outcome>
+
+
+____ non functional requirements ____
+"Compatibility
+    Compatible with most major browsers (Chrome, Firefox, Safari, Edge)"
+I know we're not going to double check this, But try not to list requirements you don't want to take on.
+// In a professional setting, saying something is tested doesn't mean loading it once.
+// It means whatever gambit of tests you did making the product, you ran on every browser. Preferably in an automated way.
+
+____ architecture ____
+Your diagram looks like your only deploying your backend and not your frontend to the cloud?
+
+And it's probably a good idea to see if your AI library choice does the task in the way you intend.
+// It's probably doable, but I imagine it would involve training a model to get keywords out of a job description.
+// If your familiar with AI pipelines this can be done pretty quick.
+// But if not I don't know if it's there's a library for this out of the box.
+
+
+____ story board ____
+tasks:
++
+
+tests:
++
+
+____ conc. ____
+
+There's some coherence and phrasing difficulties in the documentation. That said, it suffices.
+I think it'd be a good idea to work out concretely what your project looks like and exactly what it does amongst the group.
+// As far as I can tell that hasn't actually been done :p
+
+It's also a good idea to have worked out if the AI API works for the task you've set out by Thursday.
+Not ganna lie, I'm a bit worried about your project.
+That said, documentation isn't always revealing, and I'm looking forward to being incorrect.
+
+
+6/6
+
+
+
