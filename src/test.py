@@ -5,7 +5,7 @@ import os
 load_dotenv()
 
 client = InferenceClient(
-    "meta-llama/Meta-Llama-3-8B-Instruct",
+    os.getenv('HG_NAME'),
     token=os.getenv('HG_API_KEY'),
 )
 
