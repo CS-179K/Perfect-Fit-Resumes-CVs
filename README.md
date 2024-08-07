@@ -11,7 +11,7 @@ Perfect Fit Resumes/CVs is a web application designed to help job seekers create
 7. As a user, I want to be have many different methods of input for my resume/cv, so it is convenient for me (Story points: 4)
 8. As a user, I want to export my customized resume in multiple formats, so I can meet the requirements of different job applications easily (Story points: 4)
 
-## Non-function Requirements
+## Non-functional Requirements
 - Safety and security requirement
     - The information are encrypted
     - Aim to not have any information saved once finished its use
@@ -35,6 +35,9 @@ Perfect Fit Resumes/CVs is a web application designed to help job seekers create
 
 ## Architecture diagram
 ![Architecture Diagram](/Burndown/cs179karchitecture.jpg)
+
+## Burndown Chart
+![Architecture Diagram](/Burndown/BurnChart08:05.png)
 
 ## Team Members
 * [Minh Ho](https://github.com/mnvho)

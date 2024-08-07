@@ -1,0 +1,61 @@
+Make local website frontend
+
+Unit Tests:
+1. Does the website load:
+   - Test: Verify that the main page loads successfully.
+   - Expected Result: The main page returns a status code of 200.
+
+2. Does the front end input accept files:
+   - Test: Upload a sample resume file through the front end input.
+   - Expected Result: The file is successfully uploaded and the correct response is returned.
+
+3. Does the front end output give files:
+   - Test: Request the generated resume file from the front end output.
+   - Expected Result: The file is successfully downloaded and matches the expected output format.
+
+Get the API to work (not based on a user story but extremely important regardless)
+
+Unit Tests:
+1. Do we have access to the API
+2. Does the API properly read the input
+3. Does the API distinguish between resume and cover letter
+
+
+On the landing page, make a dropdown menu to specify inputting a CV/Resume.
+
+1. Does the dropdown display multiple options
+2. Does the dropdown display correct options
+3. Does the dropdown close properly
+
+
+On the landing page, make a dropdown menu to specify outputting a CV/Resume.
+
+1. Does the dropdown display multiple options
+2. Does the dropdown display correct options
+3. Does the dropdown close properly
+
+Create a nonfile user input for additional information
+
+1. Is the textbox visible
+2. Does the textbox accept input
+3. Does the textbox pass the input to backend correctly
+
+API can do keyword extraction on input
+
+1. Does the API output expected keywords from standardized input
+2. Does the API properly read input for keyword extraction
+3. Does the API gracefully handle unexpected inputs
+
+API can perform sentiment analysis
+
+1. Does the API output expected sentiment from standardized input
+2. Does the API properly read input for sentiment analysis
+3. Does the API gracefully handle unexpected inputs
+
+API can compare keywords with job description
+
+1. Does the API output expected keywords from the job description 
+2. Does the API properly read input for job description
+3. Does the API gracefully handle unexpected inputs
+
+
