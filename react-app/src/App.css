@@ -49,3 +49,9 @@
   border-style: solid;
   border-color: aliceblue;
 } */
+
+.file-upload {
+  margin-top: 10px;  
+  width: 45%;        
+  float: left;       
+}
