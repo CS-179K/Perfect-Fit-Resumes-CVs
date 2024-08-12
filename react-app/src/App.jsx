@@ -57,10 +57,8 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <div className='projectTitle'>
-        <h1>Job Application Helper</h1>
-      </div>
+    <div className="App">
+      <h1 className='projectTitle'>Job Application Helper</h1>
       <form onSubmit={handleSubmit} className='container'>
         {/* Specify document type */}
         <select value={documentType} onChange={handleDropdownChange} className="dropdown">
