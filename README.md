@@ -15,9 +15,9 @@ Perfect Fit Resumes/CVs is a web application designed to help job seekers create
 11. As a user, I want to be able to edit my personal information, so that the information is always up to date. (Story points: 3)
 12. As a user without a resume, I want to be able to create a resume with guidance of AI, so that I can have the best resume for my job application. (Story points: 4)
 
-**Total story points: 40**
-**Completed story points: 21**
-**Remaing story points: 19**
+**Total story points: 40**<br>
+**Completed story points: 21**<br>
+**Remaing story points: 19**<br>
 
 ## Non-functional Requirements
 - Safety and security requirement
