@@ -13,11 +13,12 @@ Perfect Fit Resumes/CVs is a web application designed to help job seekers create
 9. As a new user, I want to register a username and password, so that the system remembers my information. (Story points: 4)
 10. As a user, I want to be able to view my personal information, so that I know the system has my correct information to create the resume or cover letter. (Story points: 3)
 11. As a user, I want to be able to edit my personal information, so that the information is always up to date. (Story points: 3)
-12. As a user without a resume, I want to be able to create a resume with guidance of AI, so that I can have the best resume for my job application. (Story points: 4)
+12. As a returning user, I want to sign in to my account so that my profile doesn't go to waste after a single use (Story points: 3)
+13. As a user without a resume, I want to be able to create a resume with guidance of AI, so that I can have the best resume for my job application. (Story points: 4)
 
-**Total story points: 40**<br>
+**Total story points: 43**<br>
 **Completed story points: 21**<br>
-**Remaing story points: 19**<br>
+**Remaing story points: 22**<br>
 
 ## Non-functional Requirements
 - Safety and security requirement
