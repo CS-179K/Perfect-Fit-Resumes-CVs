@@ -16,12 +16,11 @@
     background-color: black;
 
     box-sizing: border-box;
-    padding-left: 15px;
-    padding-top: 5px;
-
     font-size: 4vh;
 
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     z-index: 999;
 }
 
@@ -177,7 +176,7 @@
 
 .resultBox {
     padding: 10px;
-    height: 50vh;
+    height: 60vh;
     width: 55vw;
     font-size: 2.5vh;
     margin-top: 1vh;
@@ -194,26 +193,29 @@
 
 .custom-file-upload {
     display: inline-block;
-    width: 6vh; /* Width and height same for perfect circle */
+    width: 6vh;
+    /* Width and height same for perfect circle */
     height: 6vh;
     cursor: pointer;
     background-color: #000000;
     color: white;
-    border-radius: 50%; /* Button circular */
+    border-radius: 50%;
+    /* Button circular */
     text-align: center;
-    line-height: 6vh; /* Vertically center */
+    line-height: 6vh;
+    /* Vertically center */
     font-size: 2.5vh;
 
     position: absolute;
     left: 51.1vw;
     top: 0.55vh;
 }
-  
-  .custom-file-upload:hover {
+
+.custom-file-upload:hover {
     background-color: #0056b3;
-  }
-  
-  .file-upload {
+}
+
+.file-upload {
     margin-top: 10px;
     background-color: #1e1c24;
     height: 7vh;
@@ -222,9 +224,22 @@
     position: absolute;
     right: 8.2vw;
     bottom: 10.5vh;
-  }
-  
+}
+
 .fileUploadName {
     position: absolute;
     left: 1vw;
+
+}
+
+.headerText {
+    color: white;
+    white-space: nowrap;
+    margin-right: 10px;
+}
+
+.pfp {
+    margin-left: 0;
+    height: 160%;
+    max-height: 18vh;
 }

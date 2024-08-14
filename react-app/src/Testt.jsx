@@ -2,6 +2,7 @@
 import './test.css'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import pfp from './assets/profile.jpeg';
 
 function Testt() {
   // State to hold selected options, job description, and current step
@@ -85,7 +86,8 @@ function Testt() {
   return (
     <div className="Test">
       <div id='header'>
-        Perfect Fit Resumes and Cover Letters
+        <div className="headerText">Perfect Fit Resumes and Cover Letters</div>
+        <img src={pfp} alt="Profile Picture" className="pfp" />
       </div>
       <div id='mainBody'>
         <div id='centerThing'>
