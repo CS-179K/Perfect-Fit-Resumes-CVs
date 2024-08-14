@@ -16,12 +16,11 @@
     background-color: black;
 
     box-sizing: border-box;
-    padding-left: 15px;
-    padding-top: 5px;
-
     font-size: 4vh;
 
     display: flex;
+    justify-content: space-between; 
+    align-items: center;
     z-index: 999;
 }
 
@@ -188,4 +187,16 @@
     padding: 10px;
     border: 1px solid #ccc;
     background-color: #000000;
+}
+
+.headerText {
+    color: white;
+    white-space: nowrap;
+    margin-right: 10px;
+}
+
+.pfp {
+    margin-left: 0; 
+    height: 160%; 
+    max-height: 18vh; 
 }
