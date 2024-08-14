@@ -10,6 +10,7 @@ function Testt() {
   const [personDescription, setPersonDescription] = useState(''); // Track the resume or cover letter info
   const [jobDescription, setJobDescription] = useState(''); // Track the job description
   const [step, setStep] = useState(1); // Track the current step
+  const [file, setFile] = useState(null);
 
   const [result, setResult] = useState(0);
 
@@ -45,6 +46,7 @@ function Testt() {
     }
   };
 
+  // // Handle GET request
   // const handleGetRequest = async () => {
   //   try {
   //     // Make GET request to retrieve the result
@@ -54,21 +56,6 @@ function Testt() {
   //     setStep(4);  // Move to the next step
   //   } catch (error) {
   //     console.error('There was an error with the GET request!', error);
-  //   }
-  // };
-
-  // const handleOk3 = async () => {
-  //   // e.preventDefault();
-  //   try {
-  //     const response = await axios.post("http://localhost:5000/api/users", {
-  //       documentType: documentType,
-  //       personDescription: personDescription,
-  //       jobDescription: jobDescription
-  //     });
-  //     // console.log(documentType, personDescription, jobDescription);
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     console.log(error.response);
   //   }
   // };
 
@@ -91,22 +78,26 @@ function Testt() {
     setJobDescription(event.target.value);
   };
 
+  // Handle file import
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]); // Store the selected file in state
+  };
+
   return (
     <div className="Test">
       <div id='header'>
-      <div className="headerText">Perfect Fit Resumes and Cover Letters</div>
-      <img src={pfp} alt="Profile Picture" className = "pfp" />
+        <div className="headerText">Perfect Fit Resumes and Cover Letters</div>
+        <img src={pfp} alt="Profile Picture" className="pfp" />
       </div>
       <div id='mainBody'>
         <div id='centerThing'>
-          {/* Test */}
           <div id='stepsThing'>
             {step} &rarr;
           </div>
           <div id='centerCenterTop'>
             {step === 1 && "Let's get started! How can we help you today?"}
-            {step === 2 && "Paste your resume/CV or cover letter in the textbox below!"}
-            {step === 3 && "Paste the job description below in the textbox below!"}
+            {step === 2 && "Paste your resume/CV or cover letter in the textbox!"}
+            {step === 3 && "Paste the job description below in the textbox!"}
             {step === 4 && "Here is your adjusted " + documentType + " for your job!"}
           </div>
           <div id='centerCenterCenter'>
@@ -118,12 +109,14 @@ function Testt() {
                 </select>
               </>
             ) : step === 2 ? (
-              <textarea
-                value={personDescription}
-                onChange={handlePersonInputChange}
-                placeholder='Enter your resume/cv or cover letter here... '
-                className='inputBox'
-              />
+              <>
+                <textarea
+                  value={personDescription}
+                  onChange={handlePersonInputChange}
+                  placeholder='Enter your resume/cv or cover letter here... '
+                  className='inputBox'
+                />
+              </>
             ) : step === 3 ? (
               <textarea
                 value={jobDescription}
@@ -134,7 +127,7 @@ function Testt() {
             ) : (
               <div className='resultBox'>
                 {result
-                  .trim() 
+                  .trim()
                   .split('\n')
                   .map((line, index) => (
                     <p key={index}>{line}</p>
@@ -145,6 +138,21 @@ function Testt() {
           <div id='centerCenterBot'>
             <button type='button' className='OKbutton' onClick={handleOkClick}>OK</button>
           </div>
+          {(step === 2) && (
+            <div className="file-upload">
+              {/* <p>Please upload your {documentType}:</p> */}
+              <input
+                type="file"
+                id="file"
+                style={{ display: 'none' }}
+                onChange={handleFileChange}
+              />
+              <label htmlFor="file" className="custom-file-upload">
+                &#x1F4CE;
+              </label>
+              {file && <p className='fileUploadName'>{file.name}</p>}
+            </div>
+          )}
         </div>
       </div>
       <div id='footer'>

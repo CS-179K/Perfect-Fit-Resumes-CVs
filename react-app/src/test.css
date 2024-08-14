@@ -19,7 +19,7 @@
     font-size: 4vh;
 
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     align-items: center;
     z-index: 999;
 }
@@ -129,7 +129,9 @@
     font-size: 2.5vh;
     margin-top: 1vh;
     box-sizing: border-box;
-    margin-left: 8.5vw;
+    margin-left: 9vw;
+    resize: none;
+    background-color: #2c2934;
 }
 
 .dropdown {
@@ -189,6 +191,47 @@
     background-color: #000000;
 }
 
+.custom-file-upload {
+    display: inline-block;
+    width: 6vh;
+    /* Width and height same for perfect circle */
+    height: 6vh;
+    cursor: pointer;
+    background-color: #000000;
+    color: white;
+    border-radius: 50%;
+    /* Button circular */
+    text-align: center;
+    line-height: 6vh;
+    /* Vertically center */
+    font-size: 2.5vh;
+
+    position: absolute;
+    left: 51.1vw;
+    top: 0.55vh;
+}
+
+.custom-file-upload:hover {
+    background-color: #0056b3;
+}
+
+.file-upload {
+    margin-top: 10px;
+    background-color: #1e1c24;
+    height: 7vh;
+    width: 100.6vh;
+
+    position: absolute;
+    right: 8.2vw;
+    bottom: 10.5vh;
+}
+
+.fileUploadName {
+    position: absolute;
+    left: 1vw;
+
+}
+
 .headerText {
     color: white;
     white-space: nowrap;
@@ -196,7 +239,7 @@
 }
 
 .pfp {
-    margin-left: 0; 
-    height: 160%; 
-    max-height: 18vh; 
+    margin-left: 0;
+    height: 160%;
+    max-height: 18vh;
 }
