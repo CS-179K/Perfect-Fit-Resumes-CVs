@@ -1,36 +1,20 @@
-import { useState } from 'react'
-import './App.css'
+import React, { useState } from 'react';
+import './App.css';
 
 function App() {
-  // State to hold selected options and job description
-  const [documentType, setDocumentType] = useState('');
-  const [jobDescription, setJobDescription] = useState('');
-  
-  // New state for file upload functionality
+  const [selectedFileType, setSelectedFileType] = useState('');
   const [file, setFile] = useState(null);
 
-  // Handle the dropdown menu
   const handleDropdownChange = (event) => {
-    setDocumentType(event.target.value);
+    setSelectedFileType(event.target.value);
   };
 
-  // Updating dialogue box for JD
-  const handleTextAreaChange = (event) => {
-    setJobDescription(event.target.value);
-  };
-
-  // Handle file selection
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
   };
 
-  // Submitting the form
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Selected Document:', documentType);
-    console.log('Job Description:', jobDescription);
-
-    // Handle file upload if a file is selected
     if (file) {
       const formData = new FormData();
       formData.append('file', file);
@@ -41,51 +25,47 @@ function App() {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log('File uploaded successfully:', data);
+          console.log('Success:', data);
         })
         .catch((error) => {
-          console.error('File upload error:', error);
+          console.error('Error:', error);
         });
     } else {
       console.log('No file selected');
     }
   };
 
-  const handleClick = (selectedData) => {
-    setSelectedData(selectedData);
-    setShow(true);
-  };
-
   return (
     <div className="App">
-      <h1 className='projectTitle'>Job Application Helper</h1>
-      <form onSubmit={handleSubmit} className='container'>
-        {/* Specify document type */}
-        <select value={documentType} onChange={handleDropdownChange} className="dropdown">
-          <option value="" disabled>Select Document Type</option>
-          <option value="Resume" onClick={() => clickResume(row)}>Resume</option>
-          <option value="CV">CV</option>
+      {/* Existing Elements */}
+      <div className="projectTitle">
+        <h1>Job Description</h1>
+        <p>Here is the description of the job...</p>
+      </div>
+
+      <div className="dropdown">
+        <select onChange={handleDropdownChange}>
+          <option value="">Select a file type</option>
+          <option value="resume">Resume</option>
+          <option value="cv">CV</option>
         </select>
+      </div>
 
-        {/* Job Description */}
-        <textarea
-          value={jobDescription}
-          onChange={handleTextAreaChange}
-          className="dialogue-box"
-          placeholder="Enter Job Description Here..."
-        />
+      {selectedFileType && (
+        <div className="file-upload">
+          <p>Please upload your {selectedFileType}:</p>
+          <input type="file" onChange={handleFileChange} />
+          <button className="submitButton" type="submit" onClick={handleSubmit}>
+            Upload
+          </button>
+        </div>
+      )}
 
-        {/* New: File Upload Section */}
-        {documentType && (
-          <div className="file-upload">
-            <p>Please upload your {documentType}:</p>
-            <input type="file" onChange={handleFileChange} />
-          </div>
-        )}
-
-        {/* Submit button */}
-        <button type="submit" className='submitButton'>Submit</button>
-      </form>
+      {/* Existing Dialogue Box or Other Elements */}
+      <div className="dialogue-box">
+        <h2>Dialogue Box</h2>
+        <p>This is where the dialogue or other content goes...</p>
+      </div>
     </div>
   );
 }
