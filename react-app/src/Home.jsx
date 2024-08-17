@@ -1,17 +1,18 @@
-// import { useState } from 'react'
-import './test.css'
-import React, { useState, useEffect } from 'react'
+import './Home.css'
+import React, { useState } from 'react'
 import axios from 'axios'
-import pfp from './assets/profile.jpeg';
+// import { PDFDocument } from 'pdf-lib'; // For creating PDF
+import pdfToText from 'react-pdftotext' // Parsing PDF
 
-function Testt() {
-  // State to hold selected options, job description, and current step
-  const [documentType, setDocumentType] = useState('Resume'); // Track to create resume or cover letter
-  const [personDescription, setPersonDescription] = useState(''); // Track the resume or cover letter info
-  const [jobDescription, setJobDescription] = useState(''); // Track the job description
-  const [step, setStep] = useState(1); // Track the current step
+
+function Home() {
+  // State to hold selected options, job description, and current step, etc
+  const [documentType, setDocumentType] = useState('Resume');
+  const [personDescription, setPersonDescription] = useState('');
+  const [jobDescription, setJobDescription] = useState('');
+  const [doneGenerating, setDoneGenerating] = useState(false);
+  const [step, setStep] = useState(1);
   const [file, setFile] = useState(null);
-
   const [result, setResult] = useState(0);
 
   // Handle the dropdown menu
@@ -33,9 +34,9 @@ function Testt() {
         personDescription: personDescription,
         jobDescription: jobDescription
       }).then(response => {
-        console.log(response.data.message, response.data.result);
-        // console.log(response.data.result);
+        // console.log(response.data.prompt, response.data.message, response.data.result);
         setResult(response.data.result); // Store the server response from POST request
+        setDoneGenerating(true);
         setStep(4);  // Move to the final step
       }).catch(error => {
         console.error('There was an error submitting the data!', error);
@@ -62,7 +63,7 @@ function Testt() {
   // Handle the arrow button click
   const handleArrowClick = (direction) => {
     if (direction === 'next') {
-      setStep(prevStep => Math.min(prevStep + 1, 4)); // Move to the next step, but not above 4
+      setStep(prevStep => Math.min(prevStep + 1, doneGenerating ? 4 : 3)); // Move to the next step, but not above 4
     } else if (direction === 'previous') {
       setStep(prevStep => Math.max(prevStep - 1, 1)); // Move to the previous step, but not below 1
     }
@@ -79,16 +80,28 @@ function Testt() {
   };
 
   // Handle file import
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0]); // Store the selected file in state
+  const handleFileChange = async (event) => {
+    const uploadedFile = event.target.files[0];
+
+    if (uploadedFile && uploadedFile.type === 'application/pdf') {
+      const file = event.target.files[0]
+      pdfToText(file)
+        // .then(text => console.log(text))
+        .then(text => setPersonDescription(text))
+        .catch(error => console.error("Failed to extract text from pdf"))
+
+      setFile(uploadedFile);
+    } else {
+      alert('Please upload a valid PDF file.');
+    }
   };
 
   return (
     <div className="Test">
-      <div id='header'>
+      {/* <div id='header'>
         <div className="headerText">Perfect Fit Resumes and Cover Letters</div>
         <img src={pfp} alt="Profile Picture" className="pfp" />
-      </div>
+      </div> */}
       <div id='mainBody'>
         <div id='centerThing'>
           <div id='stepsThing'>
@@ -140,7 +153,6 @@ function Testt() {
           </div>
           {(step === 2) && (
             <div className="file-upload">
-              {/* <p>Please upload your {documentType}:</p> */}
               <input
                 type="file"
                 id="file"
@@ -166,4 +178,4 @@ function Testt() {
   );
 }
 
-export default Testt
+export default Home
