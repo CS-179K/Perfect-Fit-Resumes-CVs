@@ -1,16 +1,18 @@
-// import { useState } from 'react'
-import './test.css'
-import React, { useState, useEffect } from 'react'
+import './Home.css'
+import React, { useState } from 'react'
 import axios from 'axios'
-import pfp from './assets/profile.jpeg';
+// import { PDFDocument } from 'pdf-lib'; // For creating PDF
+import pdfToText from 'react-pdftotext' // Parsing PDF
 
-function Testt() {
-  // State to hold selected options, job description, and current step
-  const [documentType, setDocumentType] = useState('Resume'); // Track to create resume or cover letter
-  const [personDescription, setPersonDescription] = useState(''); // Track the resume or cover letter info
-  const [jobDescription, setJobDescription] = useState(''); // Track the job description
-  const [step, setStep] = useState(1); // Track the current step
 
+function Home() {
+  // State to hold selected options, job description, and current step, etc
+  const [documentType, setDocumentType] = useState('Resume');
+  const [personDescription, setPersonDescription] = useState('');
+  const [jobDescription, setJobDescription] = useState('');
+  const [doneGenerating, setDoneGenerating] = useState(false);
+  const [step, setStep] = useState(1);
+  const [file, setFile] = useState(null);
   const [result, setResult] = useState(0);
 
   // Handle the dropdown menu
@@ -32,9 +34,9 @@ function Testt() {
         personDescription: personDescription,
         jobDescription: jobDescription
       }).then(response => {
-        console.log(response.data.message, response.data.result);
-        // console.log(response.data.result);
+        // console.log(response.data.prompt, response.data.message, response.data.result);
         setResult(response.data.result); // Store the server response from POST request
+        setDoneGenerating(true);
         setStep(4);  // Move to the final step
       }).catch(error => {
         console.error('There was an error submitting the data!', error);
@@ -45,6 +47,7 @@ function Testt() {
     }
   };
 
+  // // Handle GET request
   // const handleGetRequest = async () => {
   //   try {
   //     // Make GET request to retrieve the result
@@ -57,25 +60,10 @@ function Testt() {
   //   }
   // };
 
-  // const handleOk3 = async () => {
-  //   // e.preventDefault();
-  //   try {
-  //     const response = await axios.post("http://localhost:5000/api/users", {
-  //       documentType: documentType,
-  //       personDescription: personDescription,
-  //       jobDescription: jobDescription
-  //     });
-  //     // console.log(documentType, personDescription, jobDescription);
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     console.log(error.response);
-  //   }
-  // };
-
   // Handle the arrow button click
   const handleArrowClick = (direction) => {
     if (direction === 'next') {
-      setStep(prevStep => Math.min(prevStep + 1, 4)); // Move to the next step, but not above 4
+      setStep(prevStep => Math.min(prevStep + 1, doneGenerating ? 4 : 3)); // Move to the next step, but not above 4
     } else if (direction === 'previous') {
       setStep(prevStep => Math.max(prevStep - 1, 1)); // Move to the previous step, but not below 1
     }
@@ -91,22 +79,38 @@ function Testt() {
     setJobDescription(event.target.value);
   };
 
+  // Handle file import
+  const handleFileChange = async (event) => {
+    const uploadedFile = event.target.files[0];
+
+    if (uploadedFile && uploadedFile.type === 'application/pdf') {
+      const file = event.target.files[0]
+      pdfToText(file)
+        // .then(text => console.log(text))
+        .then(text => setPersonDescription(text))
+        .catch(error => console.error("Failed to extract text from pdf"))
+
+      setFile(uploadedFile);
+    } else {
+      alert('Please upload a valid PDF file.');
+    }
+  };
+
   return (
     <div className="Test">
-      <div id='header'>
-      <div className="headerText">Perfect Fit Resumes and Cover Letters</div>
-      <img src={pfp} alt="Profile Picture" className = "pfp" />
-      </div>
+      {/* <div id='header'>
+        <div className="headerText">Perfect Fit Resumes and Cover Letters</div>
+        <img src={pfp} alt="Profile Picture" className="pfp" />
+      </div> */}
       <div id='mainBody'>
         <div id='centerThing'>
-          {/* Test */}
           <div id='stepsThing'>
             {step} &rarr;
           </div>
           <div id='centerCenterTop'>
             {step === 1 && "Let's get started! How can we help you today?"}
-            {step === 2 && "Paste your resume/CV or cover letter in the textbox below!"}
-            {step === 3 && "Paste the job description below in the textbox below!"}
+            {step === 2 && "Paste your resume/CV or cover letter in the textbox!"}
+            {step === 3 && "Paste the job description below in the textbox!"}
             {step === 4 && "Here is your adjusted " + documentType + " for your job!"}
           </div>
           <div id='centerCenterCenter'>
@@ -118,12 +122,14 @@ function Testt() {
                 </select>
               </>
             ) : step === 2 ? (
-              <textarea
-                value={personDescription}
-                onChange={handlePersonInputChange}
-                placeholder='Enter your resume/cv or cover letter here... '
-                className='inputBox'
-              />
+              <>
+                <textarea
+                  value={personDescription}
+                  onChange={handlePersonInputChange}
+                  placeholder='Enter your resume/cv or cover letter here... '
+                  className='inputBox'
+                />
+              </>
             ) : step === 3 ? (
               <textarea
                 value={jobDescription}
@@ -134,7 +140,7 @@ function Testt() {
             ) : (
               <div className='resultBox'>
                 {result
-                  .trim() 
+                  .trim()
                   .split('\n')
                   .map((line, index) => (
                     <p key={index}>{line}</p>
@@ -145,6 +151,20 @@ function Testt() {
           <div id='centerCenterBot'>
             <button type='button' className='OKbutton' onClick={handleOkClick}>OK</button>
           </div>
+          {(step === 2) && (
+            <div className="file-upload">
+              <input
+                type="file"
+                id="file"
+                style={{ display: 'none' }}
+                onChange={handleFileChange}
+              />
+              <label htmlFor="file" className="custom-file-upload">
+                &#x1F4CE;
+              </label>
+              {file && <p className='fileUploadName'>{file.name}</p>}
+            </div>
+          )}
         </div>
       </div>
       <div id='footer'>
@@ -158,4 +178,4 @@ function Testt() {
   );
 }
 
-export default Testt
+export default Home

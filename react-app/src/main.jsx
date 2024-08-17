@@ -1,13 +1,21 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
-import Testt from './Testt.jsx'
+import Home from './Home.jsx'
 import './index.css'
-import ProfilePage from './ProfilePage.jsx'
+
+import Header from './Header.jsx'
+
+const Main = () => {
+  return (
+    <div>
+      <Header />
+      <Home />
+    </div>
+  );
+}
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* <App /> */}
-    <ProfilePage />
+    <Main />
   </StrictMode>,
 )

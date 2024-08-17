@@ -29,21 +29,23 @@ def submit_data():
         person_description = data.get('personDescription')
         job_description = data.get('jobDescription')
 
+        prompt = "Don't give me any suggestions, just give me the " + document_type
+        prompt += "Using my resume/cover letter: " + person_description + "\n" + \
+          "Create a " + document_type + "\n" + \
+          "for this job: " + job_description
         # Create the prompt for Hugging Face
-        messages = [{"role": "user", "content": "Using my cover letter: " + person_description +
-                    "\nCreate a " + document_type + 
-                    "for this job: " + job_description}]
+        prompts = [{"role": "user", "content": prompt}]
         result = ''
 
         # Send request to Hugging Face and accumulate the response
         for message in client.chat_completion(
-            messages,
+            prompts,
             max_tokens=500,
             stream=True,
         ):
             result += message.choices[0].delta.content
 
-        return jsonify({"message": "Data received successfully!", "result": result})
+        return jsonify({"message": "Data received successfully!", "prompt": prompt, "result": result})
 
     elif request.method == 'GET':
         # Handle GET request (if needed)
