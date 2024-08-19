@@ -26,14 +26,14 @@ h1 {
     margin-bottom: 20px;
 }
 
-form {
+#signUpForm {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 }
 
-.input-field {
+/* .input-field {
     background-color: #333;
     color: white;
     border: none;
@@ -42,11 +42,11 @@ form {
     margin: 10px 0;
     width: 100%;
     max-width: 300px;
-}
+} */
 
-input::placeholder {
+/* input::placeholder {
     color: #aaa;
-}
+} */
 
 /* button {
     background-color: #007bff;

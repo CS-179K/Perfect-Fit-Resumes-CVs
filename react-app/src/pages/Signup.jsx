@@ -44,7 +44,7 @@ function SignUp() {
   return (
     <div className="container">
       <h1>Sign Up</h1>
-      <form onSubmit={handleSignUp}>
+      <form onSubmit={handleSignUp} id="loginForm">
         <input
           type="email"
           placeholder="Email"

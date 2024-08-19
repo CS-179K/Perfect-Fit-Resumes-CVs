@@ -39,10 +39,10 @@ function Login({ setUserID, setIsLoggedIn }) {
   return (
     <div className="container">
       <h1>Login</h1>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} id="loginForm">
         <input
           type="text"
-          placeholder="Username"
+          placeholder="Email"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           className="input-field"

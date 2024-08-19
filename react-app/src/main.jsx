@@ -11,7 +11,7 @@ import SignUp from './pages/Signup.jsx'
 const Main = () => {
   // Handles whether the user is logged in or not (global)
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userID, setUserID] = useState(1);
+  const [userID, setUserID] = useState(0);
 
   return (
     <Router>
