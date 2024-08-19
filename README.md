@@ -8,7 +8,7 @@ Perfect Fit Resumes/CVs is a web application designed to help job seekers create
 4. As a user, I want to receive my tailored resume/cv, so I can submit it to the job application (Story points: 3)
 5. As a user, I want to be able to choose to create a resume, cv, or both, so that that I get exactly what I want (Story points: 1)
 6. As a user, I want to be have many different methods of input for my resume/cv, so it is convenient for me (Story points: 4)
-7. As a user, I want to export my customized resume in multiple formats, so I can meet the requirements of different job applications easily (Story points: 4)
+7. As a user, I want to export my customized resume and cover letter in multiple formats, so I can meet the requirements of different job applications easily (Story points: 4)
 8. As a new user, I want to register a username and password, so that the system remembers my information. (Story points: 4)
 9. As a user, I want to be able to view my personal information, so that I know the system has my correct information to create the resume or cover letter. (Story points: 3)
 10. As a user, I want to be able to edit my personal information, so that the information is always up to date. (Story points: 3)
