@@ -29,7 +29,7 @@ function Home() {
     } else if (step === 3) {
       // console.log(documentType, personDescription, jobDescription);
 
-      axios.post("http://localhost:5000/api/users", {
+      axios.post("http://localhost:5000/api/main", {
         documentType: documentType,
         personDescription: personDescription,
         jobDescription: jobDescription
@@ -51,7 +51,7 @@ function Home() {
   // const handleGetRequest = async () => {
   //   try {
   //     // Make GET request to retrieve the result
-  //     const getResponse = await axios.get("http://localhost:5000/api/users");
+  //     const getResponse = await axios.get("http://localhost:5000/api/main");
   //     console.log(getResponse.data.result);  // Log the retrieved result
   //     setResult(getResponse.data.result);  // Set the result in state
   //     setStep(4);  // Move to the next step

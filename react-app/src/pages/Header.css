@@ -1,0 +1,66 @@
+.headerText {
+    color: white;
+    white-space: nowrap;
+    margin-right: 10px;
+}
+
+.headerText:hover {
+    color: inherit; /* Keep the same color */
+    text-decoration: none; 
+  }
+
+#header {
+    width: 100%;
+    height: 6vh;
+    position: absolute;
+    top: 0;
+    padding-left: 10px;
+    padding-top: 5px;
+    background-color: black;
+
+    box-sizing: border-box;
+    font-size: 4vh;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 999;
+}
+
+.pfp {
+    margin-top: 10px;
+    margin-left: 0;
+    margin-right: 5px;
+    height: 8vh;
+    width: 8vh;
+    /* max-height: 18vh; */
+}
+
+.profile-dropdown-menu {
+    position: absolute;
+    top: 8vh;
+    right: 0;
+    background-color: black;
+    width: 12vw;
+    height: 14.1vh;
+}
+
+#firstButtonProfileDropdown {
+    position: absolute;
+    /* top: 5vh; */
+    /* left: 12vw; */
+
+    width: 12vw;
+    height: 7vh;
+    font-size: 1.5vw;
+    
+}
+
+#secondButtonProfileDropdown {
+    position: absolute;
+    top: 7.1vh;
+
+    width: 12vw;
+    height: 7vh;
+    font-size: 1.5vw;
+}
