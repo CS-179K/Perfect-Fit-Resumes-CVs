@@ -2,14 +2,17 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import Home from './Home.jsx'
 import './index.css'
-
+import ProfilePage from './ProfilePage.jsx'
+import Login from './Login.jsx'
 import Header from './Header.jsx'
 
 const Main = () => {
   return (
     <div>
       <Header />
-      <Home />
+      {/* <Home /> */}
+      <ProfilePage />
+      {/* <Login /> */}
     </div>
   );
 }
