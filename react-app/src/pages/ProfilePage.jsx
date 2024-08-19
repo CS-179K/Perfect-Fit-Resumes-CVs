@@ -71,7 +71,7 @@ function ProfilePage({ userID }) {
 
   return (
     <div className="Profile">
-      <div id='mainBody'>
+      <div id='mainBodyProfile'>
         {!editMode ? (
           <div>
             <h1 id='profileInfoTitle'>Profile Information</h1>
@@ -89,9 +89,9 @@ function ProfilePage({ userID }) {
         ) : (
           <>
             <h1>Edit Information</h1>
-            <form onSubmit={handleSubmit} className="profile-form">
+            <form onSubmit={handleSubmit} className="profile-form-edit">
               {/* First Name Field */}
-              <div className="form-group">
+              <div className="form-group-edit">
                 <label htmlFor="firstName">First Name:</label>
                 <input
                   type="text"
@@ -99,12 +99,12 @@ function ProfilePage({ userID }) {
                   value={firstName}
                   onChange={handleFirstNameChange}
                   placeholder="Enter your first name"
-                  className="input-field"
+                  className="input-field-edit"
                 />
               </div>
 
               {/* Last Name Field */}
-              <div className="form-group">
+              <div className="form-group-edit">
                 <label htmlFor="lastName">Last Name:</label>
                 <input
                   type="text"
@@ -112,12 +112,12 @@ function ProfilePage({ userID }) {
                   value={lastName}
                   onChange={handleLastNameChange}
                   placeholder="Enter your last name"
-                  className="input-field"
+                  className="input-field-edit"
                 />
               </div>
 
               {/* Email Field */}
-              <div className="form-group">
+              <div className="form-group-edit">
                 <label htmlFor="email">Email:</label>
                 <input
                   type="email"
@@ -125,12 +125,12 @@ function ProfilePage({ userID }) {
                   value={email}
                   onChange={handleEmailChange}
                   placeholder="Enter your email"
-                  className="input-field"
+                  className="input-field-edit"
                 />
               </div>
 
               {/* Major Field */}
-              <div className="form-group">
+              <div className="form-group-edit">
                 <label htmlFor="major">Major:</label>
                 <input
                   type="text"
@@ -138,12 +138,12 @@ function ProfilePage({ userID }) {
                   value={major}
                   onChange={handleMajorChange}
                   placeholder="Enter your major"
-                  className="input-field"
+                  className="input-field-edit"
                 />
               </div>
 
               {/* University Field */}
-              <div className="form-group">
+              <div className="form-group-edit">
                 <label htmlFor="university">University:</label>
                 <input
                   type="text"
@@ -151,12 +151,12 @@ function ProfilePage({ userID }) {
                   value={university}
                   onChange={handleUniversityChange}
                   placeholder="Enter your university"
-                  className="input-field"
+                  className="input-field-edit"
                 />
               </div>
 
               {/* Address Field */}
-              <div className="form-group">
+              <div className="form-group-edit">
                 <label htmlFor="address">Address:</label>
                 <input
                   type="text"
@@ -164,12 +164,12 @@ function ProfilePage({ userID }) {
                   value={address}
                   onChange={handleAddressChange}
                   placeholder="Enter your address"
-                  className="input-field"
+                  className="input-field-edit"
                 />
               </div>
 
               {/* Phone Number Field */}
-              <div className="form-group">
+              <div className="form-group-edit">
                 <label htmlFor="phone">Phone Number:</label>
                 <input
                   type="tel"
@@ -177,11 +177,11 @@ function ProfilePage({ userID }) {
                   value={phoneNumber}
                   onChange={handlePhoneNumberChange}
                   placeholder="Enter your phone number"
-                  className="input-field"
+                  className="input-field-edit"
                 />
               </div>
 
-              <div className="form-group">
+              <div className="form-group-edit">
                 <button type="submit" className="submitButton">Save</button>
               </div>
             </form>
