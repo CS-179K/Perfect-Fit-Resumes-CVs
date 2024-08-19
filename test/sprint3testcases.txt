@@ -1,0 +1,44 @@
+As a user, I want to be able to export the generated resume in PDF format
+- The generated resume does export and download without any corruption
+- The generated resume displays the information in a clean manner
+- The generated resume displays the information correctly
+
+As a user, I want to be able to export the generated cover letter in PDF format
+- The generated cover letter does export and download without any corruption
+- The generated cover letter displays the information in a clean manner
+- The generated cover letter displays the information correctly
+
+As a user, I want my generated resume to persist
+- The generated resume is saved in the database
+- The generated resume can be viewed from the database
+- The generated resume displays the correct information without any corruption or errors
+
+As a user, I want my generated cover letter to persist
+- The generated cover letter is saved in the database
+- The generated cover letter can be viewed from the database
+- The generated cover letter displays the correct information without any corruption or errors
+
+As a user, I want the option to create a resume if I don't have one
+- The option is visible
+- The option guides the user properly
+- The option does not have any issue when being chosen and rerouted
+
+As a user, I want to be able to input my basic information when building the resume from scratch (name, contact, etc)
+- You can type in the box without issues
+- The headings for what to input is clear
+- The information is saved properly
+
+As a user, I want to be able to input my work experiences and skills when building the resume from scratch
+- You can type in the box without issues
+- The headings for what to input is clear
+- The information is saved properly
+
+As a user, I want to be able to have guidance and suggestions when building the resume from scratch
+- The AI suggestion is properly communicated between the frontend and backend
+- The AI suggestion is clear and easy to follow
+- The AI suggestion is actually viewable with no errors
+
+As a user, I want the UI to be a bit more friendly, intuitive, and straightforward
+- All the elements are actually viewable
+- All the elements are easy to follow and intuitive
+- All the elements does not break easily with additional adjustments

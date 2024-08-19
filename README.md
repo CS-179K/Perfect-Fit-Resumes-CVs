@@ -38,8 +38,8 @@ Perfect Fit Resumes/CVs is a web application designed to help job seekers create
 ## Technologies
 * Python
 * ReactJS
-* AWS Cloud
-* tbd AI APIs
+* SQLite
+* Hugging Face Meta Llama 3 API
 * HTML/CSS
 
 ## Architecture diagram
