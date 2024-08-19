@@ -135,8 +135,6 @@ def handle_login():
     query = f"SELECT id FROM users WHERE email = '{username}' AND password = '{password}'"
     
     user = sqlquery(query)
-    # user.split()
-    # print(user[0][0])
     
     if user:
         return jsonify({"message": "Login successful!", "userID": user[0][0]})
