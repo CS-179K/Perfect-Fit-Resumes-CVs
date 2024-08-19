@@ -15,9 +15,8 @@ client = InferenceClient(
 )
 
 app = Flask(__name__)
-# cors = CORS(app, origins='*')
+cors = CORS(app, origins='*')
 # CORS(app)
-CORS(app, resources={r"/*": {"origins": "*"}})  # Allow all origins for simplicity
 
 #function to execute sql queries
 def sqlquery(query):
@@ -73,18 +72,17 @@ def handle_profile():
 
         id = data.get('id')
         email = data.get('email')
-        password = data.get('password')
+        # password = data.get('password')
         firstName = data.get('firstName')
         lastName = data.get('lastName')
         major = data.get('major')
         university = data.get('university')
         address = data.get('address')
         phoneNumber = data.get('phoneNumber')
-        print("HIAJDKJASNDKJSA EMAIL::", email)
 
-        # Update user data into the database with parameterized query
+        # Update user data into the database
         query = "UPDATE users" + \
-            "\nSET email = " + email + ", firstName = " + firstName + ", lastName = " + lastName + ", major = " + major + ", university = " + university + ", address = " + address + ", phoneNumber = " + phoneNumber + "" + \
+            "\nSET email = '" + email + "', firstName = '" + firstName + "', lastName = '" + lastName + "', major = '" + major + "', university = '" + university + "', address = '" + address + "', phoneNumber = '" + phoneNumber + "'" + \
             "\nWHERE id = " + str(id) + ";"
             
         sqlquery(query)
@@ -94,19 +92,15 @@ def handle_profile():
     elif request.method == 'GET':
         # Get the 'id' from query parameters
         id = request.args.get('id')
-        # print(f"Received ID: {id}")
 
         if not id:
             return jsonify({"error": "ID parameter is missing"}), 400
-        
-        # id = 1
 
-        # Execute the query to fetch user details with parameterized query
+        # Execute the query to fetch user details from database
         query = "SELECT email, password, firstName, lastName, major, university, address, phoneNumber" + \
             "\nFROM users" + \
             "\nWHERE id = " + str(id)
         
-        # params = (id)
         user = sqlquery(query)
 
         if user:
@@ -124,6 +118,58 @@ def handle_profile():
             return jsonify(user_data)
         else:
             return jsonify({"error": "User not found"}), 404
+
+@app.route('/api/login', methods=['POST'])
+def handle_login():
+    data = request.json
+    if not data:
+        return jsonify({"error": "Invalid or no data provided"}), 400
+
+    username = data.get('username')
+    password = data.get('password')
+
+    if not username or not password:
+        return jsonify({"error": "Username and password are required"}), 400
+
+    # Query to check if the username and password are correct
+    query = f"SELECT id FROM users WHERE email = '{username}' AND password = '{password}'"
+    
+    user = sqlquery(query)
+    # user.split()
+    # print(user[0][0])
+    
+    if user:
+        return jsonify({"message": "Login successful!", "userID": user[0][0]})
+    else:
+        return jsonify({"error": "Invalid username or password"}), 401
+    
+@app.route('/api/signup', methods=['POST'])
+def handle_signup():
+    data = request.json
+    if not data:
+        return jsonify({"error": "Invalid or no data provided"}), 400
+
+    email = data.get('email')
+    password = data.get('password')
+
+    if not email or not password:
+        return jsonify({"error": "Email and password are required"}), 400
+
+    # Check if email already exists
+    query_check = f"SELECT COUNT(*) FROM users WHERE email = '{email}'"
+    user_count = sqlquery(query_check)
+
+    if user_count[0][0] > 0:
+        return jsonify({"error": "Email already exists"}), 409
+
+    # Insert new user into the database
+    query_insert = f"INSERT INTO users (email, password) VALUES ('{email}', '{password}')"
+    
+    try:
+        sqlquery(query_insert)
+        return jsonify({"message": "Signup successful!"})
+    except sqlite3.Error as e:
+        return jsonify({"error": f"Database error: {str(e)}"}), 500
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

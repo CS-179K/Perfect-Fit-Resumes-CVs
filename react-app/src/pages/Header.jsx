@@ -3,8 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
 import pfp from '../assets/profile2.jpg';
 
-const Header = ({ isLoggedIn }) => {
+const Header = ({ isLoggedIn, setIsLoggedIn, setUserID }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  
   const navigate = useNavigate();
 
   const handleProfileClick = () => {
@@ -22,7 +23,10 @@ const Header = ({ isLoggedIn }) => {
   };
 
   const handleSignOutClick = () => {
-    onSignOut(); // Call the sign-out handler passed as a prop
+    // onSignOut(); // Call the sign-out handler passed as a prop
+    setIsLoggedIn(false);
+    setUserID(0);
+    navigate('/login')
     setDropdownOpen(false);
   };
 

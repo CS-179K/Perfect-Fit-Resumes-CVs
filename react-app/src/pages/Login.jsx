@@ -1,42 +1,39 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+import "./Login.css"
 
-function Login({ onLogin }) 
-{
+function Login({ setUserID, setIsLoggedIn }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleLogin = async (event) =>
-  {
+  const handleLogin = async (event) => {
     event.preventDefault();
     setError("");
 
-    try 
-    {
-      const response = await fetch("http://localhost:5000/login", 
-      {
-        method: "POST",
-        headers: 
-        {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
+    try {
+      const response = await axios.post("http://localhost:5000/api/login", {
+        username,
+        password
       });
 
-      if (!response.ok) 
-      {
-        const data = await response.json();
-        setError(data.error);
-      } 
-      else 
-      {
-        onLogin();
+      setIsLoggedIn(true);
+      setUserID(response.data.userID);
+      navigate('/');
+
+    } catch (error) {
+      if (error.response && error.response.data) {
+        setError(error.response.data.error);
+      } else {
+        setError("Something went wrong. Please try again.");
       }
-    } 
-    catch (error) 
-    {
-      setError("Something went wrong. Please try again.");
     }
+  };
+
+  const handleSignUpRedirect = () => {
+    navigate('/signup');
   };
 
   return (
@@ -57,9 +54,12 @@ function Login({ onLogin })
           onChange={(e) => setPassword(e.target.value)}
           className="input-field"
         />
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p className="error-message">{error}</p>}
         <button type="submit">Login</button>
       </form>
+      <p className="redirect">
+        <span onClick={handleSignUpRedirect} className="link">Don't have an account? Sign Up!</span>
+      </p>
     </div>
   );
 }

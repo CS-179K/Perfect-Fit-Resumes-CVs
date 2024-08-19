@@ -29,6 +29,7 @@ function ProfilePage({ userID }) {
             setUniversity(data.university);
           } else {
             console.error('User not found');
+            setEditMode(false);
           }
         })
         .catch(error => console.error('Error fetching user data:', error));
@@ -57,9 +58,9 @@ function ProfilePage({ userID }) {
       address: address,
       phoneNumber: phoneNumber
     }).then(response => {
-        console.log('Success:', response.data);
-        setEditMode(false);
-      })
+      console.log('Success:', response.data);
+      setEditMode(false);
+    })
       .catch(error => console.error('Error updating user data:', error));
     // setEditMode(false);
   };

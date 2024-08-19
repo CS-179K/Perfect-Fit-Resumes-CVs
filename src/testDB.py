@@ -12,7 +12,7 @@ def sqlquery(query):
     
 
 #sample code to test the function    
-query = "CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, email TEXT, password TEXT, firstName TEXT, lastName TEXT, major TEXT, university TEXT, address TEXT, phoneNumber CHAR(10))"
+query = "CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, email CHAR(255), password CHAR(255), firstName CHAR(255), lastName CHAR(255), major CHAR(255), university CHAR(255), address CHAR(255), phoneNumber CHAR(10))"
 
 sqlquery(query)
 
@@ -20,9 +20,9 @@ sqlquery(query)
 
 # sqlquery(query)
 
-thing = "2"
-query = "DELETE FROM users WHERE id = " + thing + ""
-sqlquery(query)
+# thing = "2"
+# query = "DELETE FROM users WHERE id = 3"
+# sqlquery(query)
 
 query = "SELECT * FROM users"
 
