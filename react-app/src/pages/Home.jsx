@@ -125,6 +125,8 @@ function Home({ infoFilled }) {
                 <select className='dropdown' value={documentType} onChange={handleDropdownChange}>
                   <option value="resume">Create a Resume</option>
                   <option value="cover letter">Create a Cover Letter</option>
+                  <option value="resume scratch">Create a Resume From Scratch</option>
+                  <option value="cover letter scratch">Create a Cover Letter From Scratch</option>
                 </select>
               </>
             ) : step === 2 ? (
