@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './ProfilePage.css';
 
-function ProfilePage({ userID }) {
+function ProfilePage({ userID, setInfoFilled }) {
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
@@ -27,6 +27,12 @@ function ProfilePage({ userID }) {
             setLastName(data.lastName);
             setMajor(data.major);
             setUniversity(data.university);
+            if (address != '' && phoneNumber != '' && email != '' && firstName != '' && lastName != '') {
+              setInfoFilled(true);
+            }
+            else {
+              setInfoFilled(false);
+            }
           } else {
             console.error('User not found');
             setEditMode(false);

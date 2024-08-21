@@ -4,8 +4,7 @@ import axios from 'axios'
 // import { PDFDocument } from 'pdf-lib'; // For creating PDF
 import pdfToText from 'react-pdftotext' // Parsing PDF
 
-
-function Home() {
+function Home({ infoFilled }) {
   // State to hold selected options, job description, and current step, etc
   const [documentType, setDocumentType] = useState('Resume');
   const [personDescription, setPersonDescription] = useState('');
@@ -96,6 +95,13 @@ function Home() {
     }
   };
 
+  const pdfExport = async () => {
+    const pdfDoc = await pdfDoc.embedFont(StandardFonts.TimesRoman)
+    const fontSize = 12
+
+
+  }
+
   return (
     <div className="Test">
       {/* <div id='header'>
@@ -159,6 +165,21 @@ function Home() {
                 style={{ display: 'none' }}
                 onChange={handleFileChange}
               />
+              <label htmlFor="file" className="custom-file-upload">
+                &#x1F4CE;
+              </label>
+              {file && <p className='fileUploadName'>{file.name}</p>}
+            </div>
+          )}
+          {(step === 4 && infoFilled) && (
+            <div className="file-download">
+              {/* <input
+                type="file"
+                id="file"
+                style={{ display: 'none' }}
+                onChange={handleFileChange}
+              /> */}
+              <button id='fileExportButton' onClick={() => pdfExport()}> Export </button>
               <label htmlFor="file" className="custom-file-upload">
                 &#x1F4CE;
               </label>
