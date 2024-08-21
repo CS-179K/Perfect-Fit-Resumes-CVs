@@ -50,9 +50,9 @@ Perfect Fit Resumes/CVs is a web application designed to help job seekers create
 
 ## Database Schema
 ### Entity Relationship Diagram
-![Architecture Diagram](/Burndown/ERD.png)
+![Architecture Diagram](/Burndown/ERD0821.png)
 ### Schema Graph
-![Architecture Diagram](/Burndown/schema.png)
+![Architecture Diagram](/Burndown/schema0821.png)
 
 ## Team Members
 * [Minh Ho](https://github.com/mnvho)
