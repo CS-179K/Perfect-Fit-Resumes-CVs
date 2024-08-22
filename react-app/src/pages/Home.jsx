@@ -173,7 +173,7 @@ function Home({ infoFilled }) {
               {file && <p className='fileUploadName'>{file.name}</p>}
             </div>
           )}
-          {(step === 4 && infoFilled) && (
+          {(step === 1 && infoFilled) && (
             <div className="file-download">
               {/* <input
                 type="file"
@@ -181,11 +181,11 @@ function Home({ infoFilled }) {
                 style={{ display: 'none' }}
                 onChange={handleFileChange}
               /> */}
-              <button id='fileExportButton' onClick={() => pdfExport()}> Export </button>
-              <label htmlFor="file" className="custom-file-upload">
+              <button id='fileExportButton' onClick={() => pdfExport()}> ECASDASD </button>
+              {/* <label htmlFor="file" className="custom-file-upload">
                 &#x1F4CE;
               </label>
-              {file && <p className='fileUploadName'>{file.name}</p>}
+              {file && <p className='fileUploadName'>{file.name}</p>} */}
             </div>
           )}
         </div>
