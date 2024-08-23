@@ -21,7 +21,7 @@ function Login({ setUserID, setIsLoggedIn }) {
 
       setIsLoggedIn(true);
       setUserID(response.data.userID);
-      navigate('/');
+      navigate('/profile');
 
     } catch (error) {
       if (error.response && error.response.data) {

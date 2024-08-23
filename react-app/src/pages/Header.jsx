@@ -23,11 +23,18 @@ const Header = ({ isLoggedIn, setIsLoggedIn, setUserID }) => {
   };
 
   const handleSignOutClick = () => {
-    // onSignOut(); // Call the sign-out handler passed as a prop
     setIsLoggedIn(false);
     setUserID(0);
     navigate('/login')
     setDropdownOpen(false);
+  };
+
+  const handleHomeButtonClick = () => {
+    navigate('/');
+  };
+
+  const handleHistoryButtonClick = () => {
+    navigate('/');
   };
 
   return (
@@ -35,6 +42,10 @@ const Header = ({ isLoggedIn, setIsLoggedIn, setUserID }) => {
       <Link to="/" className="headerText">
         Perfect Fit Resumes and Cover Letters
       </Link>
+      <div id='homeButton' onClick={handleHomeButtonClick}>Home</div>
+      {isLoggedIn && (
+        <div id='historyButton' onClick={handleHistoryButtonClick}>History</div>
+      )}
       <img
         src={pfp}
         alt="Profile Picture"

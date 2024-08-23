@@ -188,7 +188,7 @@ function ProfilePage({ userID, setInfoFilled }) {
               </div>
 
               <div className="form-group-edit">
-                <button type="submit" className="submitButton">Save</button>
+                <button type="submit" className='submitButton-profilePage'>Save</button>
               </div>
             </form>
           </>

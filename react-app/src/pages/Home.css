@@ -26,7 +26,7 @@
 
 #mainBody {
     position: absolute;
-    top: 6vh;
+    top: 10vh;
     /* header */
     bottom: 7vh;
     /* footer */
@@ -232,37 +232,5 @@
 }
 
 .file-download {
-    margin-top: 10px;
-    background-color: white;
-    height: 7vh;
-    width: 100.6vh;
-
     position: absolute;
-    right: 8.2vw;
-    bottom: 10.4vh;
-}
-
-.fileExportButton {
-    display: inline-block;
-    width: 12vh;
-    /* Width and height same for perfect circle */
-    height: 12vh;
-    cursor: pointer;
-    background-color: #000000;
-    color: white;
-    border-radius: 50%;
-    /* Button circular */
-    text-align: center;
-    line-height: 6vh;
-    /* Vertically center */
-    font-size: 2.5vh;
-
-    position: absolute;
-    left: 60vw;
-    top: 70vh;
-    z-index: 9999;
-}
-
-.fileExportButton:hover {
-    background-color: #0056b3;
 }

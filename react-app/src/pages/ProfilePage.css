@@ -1,6 +1,6 @@
 #mainBodyProfile {
   position: absolute;
-  top: 6vh;
+  top: 10vh;
   /* header */
   /* bottom: 7vh; */
   /* footer */
@@ -72,7 +72,7 @@ label {
   color: black;
 }
 
-.submitButton {
+.submitButton-profilePage {
   padding: 10px 15px;
   font-size: 1rem;
   color: #fff;
@@ -81,9 +81,11 @@ label {
   border-radius: 4px;
   cursor: pointer;
   text-align: center;
+  margin: 0 auto; 
+  display: block; 
 }
 
-.submitButton:hover {
+.submitButton-profilePage:hover {
   background-color: #0056b3;
 }
 

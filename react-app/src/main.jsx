@@ -6,12 +6,12 @@ import './index.css';
 import ProfilePage from './pages/ProfilePage.jsx';
 import Login from './pages/Login.jsx';
 import Header from './pages/Header.jsx';
-import SignUp from './pages/Signup.jsx'
-import Resume from './pages/ResumePage.jsx'
+import SignUp from './pages/Signup.jsx';
+import ResumeBuild from './pages/ResumePage.jsx';
 
 const Main = () => {
   // Handles whether the user is logged in or not (global)
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userID, setUserID] = useState(0);
   const [infoFilled , setInfoFilled] = useState(true);
 
@@ -23,6 +23,7 @@ const Main = () => {
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} setUserID={setUserID} />} />
         <Route path ="/signup" element={<SignUp />} />
         <Route path="/profile" element={<ProfilePage userID={userID} setInfoFilled={setInfoFilled}/>} />
+        <Route path="/resumebuild" element={<ResumeBuild />} />
         <Route path="*" element={<Home />} /> {/* Fallback route */}
       </Routes>
     </Router>

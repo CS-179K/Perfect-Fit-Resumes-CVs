@@ -1,5 +1,6 @@
 import './Home.css'
 import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 // import { PDFDocument } from 'pdf-lib'; // For creating PDF
 import pdfToText from 'react-pdftotext' // Parsing PDF
@@ -14,14 +15,23 @@ function Home({ infoFilled }) {
   const [file, setFile] = useState(null);
   const [result, setResult] = useState(0);
 
+  const navigate = useNavigate();
+
   // Handle the dropdown menu
   const handleDropdownChange = (event) => {
+    // console.log(event.target.value)
+    // if(event.target.value === 'resume scratch') {
+    //   navigate('/resumebuild');
+    // }
     setDocumentType(event.target.value);
   };
 
   // Handle the OK button click
   const handleOkClick = () => {
     if (step === 1) {
+      if (documentType === 'resume scratch') {
+        navigate('/resumebuild');
+      }
       setStep(2);
     } else if (step === 2) {
       setStep(3);
@@ -126,7 +136,7 @@ function Home({ infoFilled }) {
                   <option value="resume">Create a Resume</option>
                   <option value="cover letter">Create a Cover Letter</option>
                   <option value="resume scratch">Create a Resume From Scratch</option>
-                  <option value="cover letter scratch">Create a Cover Letter From Scratch</option>
+                  {/* <option value="cover letter scratch">Create a Cover Letter From Scratch</option> */}
                 </select>
               </>
             ) : step === 2 ? (
@@ -157,7 +167,9 @@ function Home({ infoFilled }) {
             )}
           </div>
           <div id='centerCenterBot'>
-            <button type='button' className='OKbutton' onClick={handleOkClick}>OK</button>
+            <button type='button' className='OKbutton' onClick={handleOkClick}>
+              {step === 4 ? 'Export' : 'OK'}
+            </button>
           </div>
           {(step === 2) && (
             <div className="file-upload">
@@ -173,21 +185,11 @@ function Home({ infoFilled }) {
               {file && <p className='fileUploadName'>{file.name}</p>}
             </div>
           )}
-          {(step === 1 && infoFilled) && (
+          {/* {(step === 4 && infoFilled) && (
             <div className="file-download">
-              {/* <input
-                type="file"
-                id="file"
-                style={{ display: 'none' }}
-                onChange={handleFileChange}
-              /> */}
               <button id='fileExportButton' onClick={() => pdfExport()}> ECASDASD </button>
-              {/* <label htmlFor="file" className="custom-file-upload">
-                &#x1F4CE;
-              </label>
-              {file && <p className='fileUploadName'>{file.name}</p>} */}
             </div>
-          )}
+          )} */}
         </div>
       </div>
       <div id='footer'>
