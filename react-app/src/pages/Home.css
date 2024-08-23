@@ -26,7 +26,7 @@
 
 #mainBody {
     position: absolute;
-    top: 6vh;
+    top: 10vh;
     /* header */
     bottom: 7vh;
     /* footer */
@@ -229,17 +229,8 @@
 .fileUploadName {
     position: absolute;
     left: 1vw;
-
 }
 
-/* .headerText {
-    color: white;
-    white-space: nowrap;
-    margin-right: 10px;
-} */
-
-/* .pfp {
-    margin-left: 0;
-    height: 160%;
-    max-height: 18vh;
-} */
+.file-download {
+    position: absolute;
+}

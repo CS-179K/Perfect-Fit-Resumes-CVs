@@ -1,11 +1,11 @@
 import './Home.css'
 import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 // import { PDFDocument } from 'pdf-lib'; // For creating PDF
 import pdfToText from 'react-pdftotext' // Parsing PDF
 
-
-function Home() {
+function Home({ infoFilled }) {
   // State to hold selected options, job description, and current step, etc
   const [documentType, setDocumentType] = useState('Resume');
   const [personDescription, setPersonDescription] = useState('');
@@ -15,14 +15,23 @@ function Home() {
   const [file, setFile] = useState(null);
   const [result, setResult] = useState(0);
 
+  const navigate = useNavigate();
+
   // Handle the dropdown menu
   const handleDropdownChange = (event) => {
+    // console.log(event.target.value)
+    // if(event.target.value === 'resume scratch') {
+    //   navigate('/resumebuild');
+    // }
     setDocumentType(event.target.value);
   };
 
   // Handle the OK button click
   const handleOkClick = () => {
     if (step === 1) {
+      if (documentType === 'resume scratch') {
+        navigate('/resumebuild');
+      }
       setStep(2);
     } else if (step === 2) {
       setStep(3);
@@ -96,6 +105,13 @@ function Home() {
     }
   };
 
+  const pdfExport = async () => {
+    const pdfDoc = await pdfDoc.embedFont(StandardFonts.TimesRoman)
+    const fontSize = 12
+
+
+  }
+
   return (
     <div className="Test">
       {/* <div id='header'>
@@ -120,7 +136,7 @@ function Home() {
                   <option value="resume">Create a Resume</option>
                   <option value="cover letter">Create a Cover Letter</option>
                   <option value="resume scratch">Create a Resume From Scratch</option>
-                  <option value="cover letter scratch">Create a Cover Letter From Scratch</option>
+                  {/* <option value="cover letter scratch">Create a Cover Letter From Scratch</option> */}
                 </select>
               </>
             ) : step === 2 ? (
@@ -151,7 +167,9 @@ function Home() {
             )}
           </div>
           <div id='centerCenterBot'>
-            <button type='button' className='OKbutton' onClick={handleOkClick}>OK</button>
+            <button type='button' className='OKbutton' onClick={handleOkClick}>
+              {step === 4 ? 'Export' : 'OK'}
+            </button>
           </div>
           {(step === 2) && (
             <div className="file-upload">
@@ -167,6 +185,11 @@ function Home() {
               {file && <p className='fileUploadName'>{file.name}</p>}
             </div>
           )}
+          {/* {(step === 4 && infoFilled) && (
+            <div className="file-download">
+              <button id='fileExportButton' onClick={() => pdfExport()}> ECASDASD </button>
+            </div>
+          )} */}
         </div>
       </div>
       <div id='footer'>

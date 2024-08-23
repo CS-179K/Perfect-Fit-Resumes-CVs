@@ -37,112 +37,114 @@ function ResumePage() {
   };
 
   return (
-    <div className="container">
-      <div className="Resume">
-      <h1 className="resume-header">Create Your Resume</h1>
-        <form onSubmit={handleSubmit} className="resume-form">
-          <div className="column">
-            <div className="form-group">
-              <label htmlFor="name">Name:</label>
-              <input 
-                type="text" 
-                id="name" 
-                value={name} 
-                onChange={handleNameChange} 
-                placeholder="Enter your name" 
-                className="input-field" 
-              />
+    <div className="resumePageWrapper">
+      <div className="container-resumePage">
+        <div className="Resume">
+          <h1 className="resume-header">Create Your Resume</h1>
+          <form onSubmit={handleSubmit} className="resume-form">
+            <div className="column">
+              <div className="form-group-resumePage">
+                <label className='label-ResumePage' htmlFor="name">Name:</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  value={name} 
+                  onChange={handleNameChange} 
+                  placeholder="Enter your name" 
+                  className="input-field-resumePage" 
+                />
+              </div>
+
+              <div className="form-group-resumePage">
+                <label className='label-ResumePage' htmlFor="email">Email:</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  value={email} 
+                  onChange={handleEmailChange} 
+                  placeholder="Enter your email" 
+                  className="input-field-resumePage" 
+                />
+              </div>
+
+              <div className="form-group-resumePage">
+                <label className='label-ResumePage' htmlFor="phone">Phone Number:</label>
+                <input 
+                  type="tel" 
+                  id="phone" 
+                  value={phoneNumber} 
+                  onChange={handlePhoneNumberChange} 
+                  placeholder="Enter your phone number" 
+                  className="input-field-resumePage" 
+                />
+              </div>
+
+              <div className="form-group-resumePage">
+                <label className='label-ResumePage' htmlFor="address">Address:</label>
+                <input 
+                  type="text" 
+                  id="address" 
+                  value={address} 
+                  onChange={handleAddressChange} 
+                  placeholder="Enter your address" 
+                  className="input-field-resumePage" 
+                />
+              </div>
+
+              <div className="form-group-resumePage">
+                <label className='label-ResumePage' htmlFor="university">University:</label>
+                <input 
+                  type="text" 
+                  id="university" 
+                  value={university} 
+                  onChange={handleUniversityChange} 
+                  placeholder="Enter your university" 
+                  className="input-field-resumePage" 
+                />
+              </div>
+
+              <div className="form-group-resumePage">
+                <label className='label-ResumePage' htmlFor="major">Major:</label>
+                <input 
+                  type="text" 
+                  id="major" 
+                  value={major} 
+                  onChange={handleMajorChange} 
+                  placeholder="Enter your major" 
+                  className="input-field-resumePage" 
+                />
+              </div>
             </div>
 
-            <div className="form-group">
-              <label htmlFor="email">Email:</label>
-              <input 
-                type="email" 
-                id="email" 
-                value={email} 
-                onChange={handleEmailChange} 
-                placeholder="Enter your email" 
-                className="input-field" 
-              />
+            <div className="column textarea-column">
+              <div className="form-group-resumePage">
+                <label className='label-ResumePage' htmlFor="workExperience">Work Experience:</label>
+                <textarea 
+                  id="workExperience" 
+                  value={workExperience} 
+                  onChange={handleWorkExperienceChange} 
+                  placeholder="Describe your work experience" 
+                  className="input-box-resumePage" 
+                />
+              </div>
+
+              <div className="form-group-resumePage">
+                <label className='label-ResumePage' htmlFor="skills">Skills:</label>
+                <textarea 
+                  id="skills" 
+                  value={skills} 
+                  onChange={handleSkillsChange} 
+                  placeholder="List your skills" 
+                  className="input-box-resumePage" 
+                />
+              </div>
             </div>
 
-            <div className="form-group">
-              <label htmlFor="phone">Phone Number:</label>
-              <input 
-                type="tel" 
-                id="phone" 
-                value={phoneNumber} 
-                onChange={handlePhoneNumberChange} 
-                placeholder="Enter your phone number" 
-                className="input-field" 
-              />
+            <div className="form-group-resumePage" style={{ width: '100%' }}>
+              <button type="submit" className="submitButton-resumePage">Submit</button>
             </div>
-
-            <div className="form-group">
-              <label htmlFor="address">Address:</label>
-              <input 
-                type="text" 
-                id="address" 
-                value={address} 
-                onChange={handleAddressChange} 
-                placeholder="Enter your address" 
-                className="input-field" 
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="university">University:</label>
-              <input 
-                type="text" 
-                id="university" 
-                value={university} 
-                onChange={handleUniversityChange} 
-                placeholder="Enter your university" 
-                className="input-field" 
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="major">Major:</label>
-              <input 
-                type="text" 
-                id="major" 
-                value={major} 
-                onChange={handleMajorChange} 
-                placeholder="Enter your major" 
-                className="input-field" 
-              />
-            </div>
-          </div>
-
-          <div className="column textarea-column">
-            <div className="form-group">
-              <label htmlFor="workExperience">Work Experience:</label>
-              <textarea 
-                id="workExperience" 
-                value={workExperience} 
-                onChange={handleWorkExperienceChange} 
-                placeholder="Describe your work experience" 
-                className="input-box" 
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="skills">Skills:</label>
-              <textarea 
-                id="skills" 
-                value={skills} 
-                onChange={handleSkillsChange} 
-                placeholder="List your skills" 
-                className="input-box" 
-              />
-            </div>
-          </div>
-
-          <div className="form-group" style={{ width: '100%' }}>
-            <button type="submit" className="submitButton">Submit</button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );
