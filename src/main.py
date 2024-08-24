@@ -18,7 +18,7 @@ app = Flask(__name__)
 cors = CORS(app, origins='*')
 # CORS(app)
 
-#function to execute sql queries
+# Function to execute sql queries
 def sqlquery(query):
     connection = sqlite3.connect('test.db')
     cursor = connection.cursor()
@@ -28,6 +28,19 @@ def sqlquery(query):
     connection.close()
     return values
 
+# Function to input and get response from AI
+def get_response(prompt):
+    prompts = [{"role": "user", "content": prompt}]
+    result = ''
+    for message in client.chat_completion(
+        prompts,
+        max_tokens=500,
+        stream=True,
+    ):
+        result += message.choices[0].delta.content
+    return result
+
+# Handle generating the resume and cover letter
 @app.route('/api/main', methods=['GET', 'POST'])
 def submit_data():
     if request.method == 'POST':
@@ -40,21 +53,12 @@ def submit_data():
         person_description = data.get('personDescription')
         job_description = data.get('jobDescription')
 
-        prompt = "Don't give me any suggestions, just give me the " + document_type
+        prompt = "Don't give me any suggestions or notes or say 'Here is the " + document_type + "', just give me the " + document_type + " and nothing more"
         prompt += "Using my resume/cover letter: " + person_description + "\n" + \
           "Create a " + document_type + "\n" + \
           "for this job: " + job_description
-        # Create the prompt for Hugging Face
-        prompts = [{"role": "user", "content": prompt}]
-        result = ''
-
-        # Send request to Hugging Face and accumulate the response
-        for message in client.chat_completion(
-            prompts,
-            max_tokens=500,
-            stream=True,
-        ):
-            result += message.choices[0].delta.content
+          
+        result = get_response(prompt)
 
         return jsonify({"message": "Data received successfully!", "prompt": prompt, "result": result})
 
@@ -62,6 +66,7 @@ def submit_data():
         # Handle GET request (if needed)
         return jsonify({"message": "Data sent successfully!", "result": "Loading.."})
 
+# Handle getting and editing profile information
 @app.route('/api/profile', methods=['GET', 'POST'])
 def handle_profile():
     if request.method == 'POST':
@@ -119,6 +124,7 @@ def handle_profile():
         else:
             return jsonify({"error": "User not found"}), 404
 
+# Handle logins
 @app.route('/api/login', methods=['POST'])
 def handle_login():
     data = request.json
@@ -141,6 +147,7 @@ def handle_login():
     else:
         return jsonify({"error": "Invalid username or password"}), 401
     
+# Handle sign ups
 @app.route('/api/signup', methods=['POST'])
 def handle_signup():
     data = request.json
@@ -169,5 +176,38 @@ def handle_signup():
     except sqlite3.Error as e:
         return jsonify({"error": f"Database error: {str(e)}"}), 500
 
+# Handle generating the resume from scratch
+@app.route('/api/resumepage', methods=['POST'])
+def submit_data_resume():
+    data = request.json
+    if not data:
+        return jsonify({"error": "Invalid or no data provided"}), 400
+
+    name = data.get('name')
+    email = data.get('email')
+    phoneNumber = data.get('phoneNumber')
+    address = data.get('address')
+    university = data.get('university')
+    major = data.get('major')
+    workExperience = data.get('workExperience')
+    skills = data.get('skills')
+
+    # prompt = "Don't give me any suggestions or notes or say 'Here is the " + document_type + "', just give me the " + document_type + " and nothing more"
+    # prompt = 'Hello'
+    prompt = ''
+    prompt += "Create a resume using my: " + \
+        "Name: " + name + "\n" + \
+        "Email: " + email + "\n" + \
+        "Phone number: " + phoneNumber + "\n" + \
+        "Address: " + address + "\n" + \
+        "University: " + university + "\n" + \
+        "Major: " + "\n" + major + \
+        "Work experience: " + workExperience + "\n" + \
+        "Skills: " + "\n" + skills
+        
+    result = get_response(prompt)
+
+    return jsonify({"message": "Data received successfully!", "prompt": prompt, "result": result})
+    
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
