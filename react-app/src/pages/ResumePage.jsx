@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './ResumePage.css';
+import axios from 'axios';
 
 function ResumePage() {
   // State variables for the form fields
@@ -11,6 +12,8 @@ function ResumePage() {
   const [major, setMajor] = useState('');
   const [workExperience, setWorkExperience] = useState('');
   const [skills, setSkills] = useState('');
+  const [result, setResult] = useState(0);
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
 
   // Handle input changes
   const handleNameChange = (event) => setName(event.target.value);
@@ -23,17 +26,38 @@ function ResumePage() {
   const handleSkillsChange = (event) => setSkills(event.target.value);
 
   // Handle form submission
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Phone Number:', phoneNumber);
-    console.log('Address:', address);
-    console.log('University:', university);
-    console.log('Major:', major);
-    console.log('Work Experience:', workExperience);
-    console.log('Skills:', skills);
-    // You can add further logic to process or store the information
+  const handleSubmit = () => {
+    // event.preventDefault();
+    // console.log('Name:', name);
+    // console.log('Email:', email);
+    // console.log('Phone Number:', phoneNumber);
+    // console.log('Address:', address);
+    // console.log('University:', university);
+    // console.log('Major:', major);
+    // console.log('Work Experience:', workExperience);
+    // console.log('Skills:', skills);
+    axios.post("http://localhost:5000/api/resumepage", {
+      name: name,
+      email: email,
+      phoneNumber: phoneNumber,
+      address: address,
+      university: university,
+      major: major,
+      workExperience: workExperience,
+      skills: skills
+    }).then(response => {
+      // console.log(response.data.prompt, response.data.message, response.data.result);
+      console.log(response.data.result);
+      setResult(response.data.result);
+    }).catch(error => {
+      console.error('There was an error submitting the data!', error);
+    });
+    // setResult("WOAWEEE");
+    setIsPopupVisible(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupVisible(false);
   };
 
   return (
@@ -45,73 +69,73 @@ function ResumePage() {
             <div className="column">
               <div className="form-group-resumePage">
                 <label className='label-ResumePage' htmlFor="name">Name:</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  value={name} 
-                  onChange={handleNameChange} 
-                  placeholder="Enter your name" 
-                  className="input-field-resumePage" 
+                <input
+                  type="text"
+                  id="name"
+                  value={name}
+                  onChange={handleNameChange}
+                  placeholder="Enter your name"
+                  className="input-field-resumePage"
                 />
               </div>
 
               <div className="form-group-resumePage">
                 <label className='label-ResumePage' htmlFor="email">Email:</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  value={email} 
-                  onChange={handleEmailChange} 
-                  placeholder="Enter your email" 
-                  className="input-field-resumePage" 
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={handleEmailChange}
+                  placeholder="Enter your email"
+                  className="input-field-resumePage"
                 />
               </div>
 
               <div className="form-group-resumePage">
                 <label className='label-ResumePage' htmlFor="phone">Phone Number:</label>
-                <input 
-                  type="tel" 
-                  id="phone" 
-                  value={phoneNumber} 
-                  onChange={handlePhoneNumberChange} 
-                  placeholder="Enter your phone number" 
-                  className="input-field-resumePage" 
+                <input
+                  type="tel"
+                  id="phone"
+                  value={phoneNumber}
+                  onChange={handlePhoneNumberChange}
+                  placeholder="Enter your phone number"
+                  className="input-field-resumePage"
                 />
               </div>
 
               <div className="form-group-resumePage">
                 <label className='label-ResumePage' htmlFor="address">Address:</label>
-                <input 
-                  type="text" 
-                  id="address" 
-                  value={address} 
-                  onChange={handleAddressChange} 
-                  placeholder="Enter your address" 
-                  className="input-field-resumePage" 
+                <input
+                  type="text"
+                  id="address"
+                  value={address}
+                  onChange={handleAddressChange}
+                  placeholder="Enter your address"
+                  className="input-field-resumePage"
                 />
               </div>
 
               <div className="form-group-resumePage">
                 <label className='label-ResumePage' htmlFor="university">University:</label>
-                <input 
-                  type="text" 
-                  id="university" 
-                  value={university} 
-                  onChange={handleUniversityChange} 
-                  placeholder="Enter your university" 
-                  className="input-field-resumePage" 
+                <input
+                  type="text"
+                  id="university"
+                  value={university}
+                  onChange={handleUniversityChange}
+                  placeholder="Enter your university"
+                  className="input-field-resumePage"
                 />
               </div>
 
               <div className="form-group-resumePage">
                 <label className='label-ResumePage' htmlFor="major">Major:</label>
-                <input 
-                  type="text" 
-                  id="major" 
-                  value={major} 
-                  onChange={handleMajorChange} 
-                  placeholder="Enter your major" 
-                  className="input-field-resumePage" 
+                <input
+                  type="text"
+                  id="major"
+                  value={major}
+                  onChange={handleMajorChange}
+                  placeholder="Enter your major"
+                  className="input-field-resumePage"
                 />
               </div>
             </div>
@@ -119,35 +143,53 @@ function ResumePage() {
             <div className="column textarea-column">
               <div className="form-group-resumePage">
                 <label className='label-ResumePage' htmlFor="workExperience">Work Experience:</label>
-                <textarea 
-                  id="workExperience" 
-                  value={workExperience} 
-                  onChange={handleWorkExperienceChange} 
-                  placeholder="Describe your work experience" 
-                  className="input-box-resumePage" 
+                <textarea
+                  id="workExperience"
+                  value={workExperience}
+                  onChange={handleWorkExperienceChange}
+                  placeholder="Describe your work experience"
+                  className="input-box-resumePage"
                 />
               </div>
 
               <div className="form-group-resumePage">
                 <label className='label-ResumePage' htmlFor="skills">Skills:</label>
-                <textarea 
-                  id="skills" 
-                  value={skills} 
-                  onChange={handleSkillsChange} 
-                  placeholder="List your skills" 
-                  className="input-box-resumePage" 
+                <textarea
+                  id="skills"
+                  value={skills}
+                  onChange={handleSkillsChange}
+                  placeholder="List your skills"
+                  className="input-box-resumePage"
                 />
               </div>
             </div>
 
             <div className="form-group-resumePage" style={{ width: '100%' }}>
-              <button type="submit" className="submitButton-resumePage">Submit</button>
+              <button type="button" className="submitButton-resumePage" onClick={() => handleSubmit()}>Submit</button>
             </div>
           </form>
         </div>
       </div>
+      {isPopupVisible && <ResultPopup result={result} onClose={handleClosePopup} />}
     </div>
   );
 }
 
 export default ResumePage;
+
+function ResultPopup({ result, onClose }) {
+  return (
+    <div className="popup-overlay">
+      <div className="popup-content">
+        {/* <h2>IABHSDJHBASKJDHBSJ</h2> */}
+        <p>{result
+          .trim()
+          .split('\n')
+          .map((line, index) => (
+            <p key={index}>{line}</p>
+          ))}</p>
+        <button onClick={onClose} className="close-popup-button">Close</button>
+      </div>
+    </div>
+  );
+}
