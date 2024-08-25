@@ -234,3 +234,25 @@
 .file-download {
     position: absolute;
 }
+
+.favoritesButton-home {
+    position: absolute;
+    top: 15vh;
+    right: 3vw;
+}
+
+.ExportButton {
+    /* margin-left: 1vh; */
+    /* margin-top: 2vh; */
+    margin-top: 2vh;
+    height: 6vh;
+    width: 10vw;
+    font-size: 2vh;
+
+    height: 6vh;
+    width: 6vw;
+
+    font-size: 2vh;
+    /* position: absolute; */
+    /* background-color: rgb(61, 63, 63); */
+}

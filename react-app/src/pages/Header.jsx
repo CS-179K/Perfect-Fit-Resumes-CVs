@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
 import pfp from '../assets/profile2.jpg';
 
-const Header = ({ isLoggedIn, setIsLoggedIn, setUserID }) => {
+const Header = ({ isLoggedIn, setIsLoggedIn, setUserID, setInfoFilled }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   
   const navigate = useNavigate();
@@ -25,6 +25,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn, setUserID }) => {
   const handleSignOutClick = () => {
     setIsLoggedIn(false);
     setUserID(0);
+    setInfoFilled(false);
     navigate('/login')
     setDropdownOpen(false);
   };
@@ -33,8 +34,8 @@ const Header = ({ isLoggedIn, setIsLoggedIn, setUserID }) => {
     navigate('/');
   };
 
-  const handleHistoryButtonClick = () => {
-    navigate('/');
+  const handleFavoritesButtonClick = () => {
+    navigate('/favorites');
   };
 
   return (
@@ -44,7 +45,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn, setUserID }) => {
       </Link>
       <div id='homeButton' onClick={handleHomeButtonClick}>Home</div>
       {isLoggedIn && (
-        <div id='historyButton' onClick={handleHistoryButtonClick}>History</div>
+        <div id='favoritesButton' onClick={handleFavoritesButtonClick}>Favorites</div>
       )}
       <img
         src={pfp}

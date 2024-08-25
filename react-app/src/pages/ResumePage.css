@@ -203,6 +203,10 @@
   border: 2px solid white;
 }
 
+.popup-line {
+  margin: 8px 0; /* Adjust the margin here */
+}
+
 .close-popup-button {
   margin-top: auto; /* Pushes the button to the bottom of the flex container */
   padding: 10px 20px;
