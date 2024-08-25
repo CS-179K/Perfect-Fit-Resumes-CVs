@@ -57,7 +57,7 @@ npm run dev
 ![Architecture Diagram](/Burndown/cs179karchitecture.jpg)
 
 ## Burndown Chart
-![Architecture Diagram](/Burndown/BDC0819.png)
+![Architecture Diagram](/Burndown/BDC0826.png)
 
 ## Database Schema
 ### Entity Relationship Diagram
