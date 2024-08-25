@@ -2,10 +2,10 @@ import './Home.css'
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
-// import { PDFDocument } from 'pdf-lib'; // For creating PDF
 import pdfToText from 'react-pdftotext' // Parsing PDF
+import { PDFDocument, StandardFonts, rgb } from 'pdf-lib'
 
-function Home({ infoFilled }) {
+function Home({ infoFilled, userID, isLoggedIn, address, phoneNumber, email, firstName, lastName }) {
   // State to hold selected options, job description, and current step, etc
   const [documentType, setDocumentType] = useState('Resume');
   const [personDescription, setPersonDescription] = useState('');
@@ -14,6 +14,9 @@ function Home({ infoFilled }) {
   const [step, setStep] = useState(1);
   const [file, setFile] = useState(null);
   const [result, setResult] = useState(0);
+  const [jobTitle, setJobTitle] = useState('');
+  const [companyName, setCompanyName] = useState('');
+  const [doneFavorite, setDoneFavorite] = useState(false);
 
   const navigate = useNavigate();
 
@@ -45,6 +48,8 @@ function Home({ infoFilled }) {
       }).then(response => {
         // console.log(response.data.prompt, response.data.message, response.data.result);
         setResult(response.data.result); // Store the server response from POST request
+        setJobTitle(response.data.jobTitle);
+        setCompanyName(response.data.companyName);
         setDoneGenerating(true);
         setStep(4);  // Move to the final step
       }).catch(error => {
@@ -52,6 +57,7 @@ function Home({ infoFilled }) {
       });
       // setStep(4);
     } else if (step === 4) {
+      pdfExport();
       // Done
     }
   };
@@ -71,6 +77,7 @@ function Home({ infoFilled }) {
 
   // Handle the arrow button click
   const handleArrowClick = (direction) => {
+    console.log(infoFilled);
     if (direction === 'next') {
       setStep(prevStep => Math.min(prevStep + 1, doneGenerating ? 4 : 3)); // Move to the next step, but not above 4
     } else if (direction === 'previous') {
@@ -105,19 +112,123 @@ function Home({ infoFilled }) {
     }
   };
 
-  const pdfExport = async () => {
-    const pdfDoc = await pdfDoc.embedFont(StandardFonts.TimesRoman)
-    const fontSize = 12
-
-
+  const handleFavoriting = () => {
+    if (!doneFavorite) {
+      axios.post("http://localhost:5000/api/favoriting", {
+        user_id: userID,
+        documentType: documentType,
+        result: result,
+        jobTitle: jobTitle,
+        companyName: companyName
+      }).then(response => {
+        console.log('Success:', response.data.message);
+        setDoneFavorite(true);
+      }).catch(error => {
+        console.error('There was an error submitting the data!', error);
+      });
+    }
   }
+
+  const pdfExport = async () => {
+    try {
+      console.log('PDF export');
+
+      const pdfDoc = await PDFDocument.create();
+      const page = pdfDoc.addPage([600, 800]);
+      const { width, height } = page.getSize();
+
+      // Define font size and color
+      const fontSize = 10;
+      const fontColor = rgb(0, 0, 0); 
+
+      // Define fonts
+      const font = await pdfDoc.embedFont(StandardFonts.TimesRoman);
+      const fontBold = await pdfDoc.embedFont(StandardFonts.TimesRomanBold);
+      const fontItalics = await pdfDoc.embedFont(StandardFonts.TimesRomanItalic);
+      const fontBoldItalics = await pdfDoc.embedFont(StandardFonts.TimesRomanBoldItalic);
+
+      // Define starting position
+      let yPosition = height - 50; 
+
+      // Draw first name
+      page.drawText(firstName, {
+        x: 50,
+        y: yPosition,
+        size: fontSize,
+        font: fontBold,
+        color: fontColor,
+      });
+
+      // Draw last name
+      // yPosition -= 20;
+      page.drawText(lastName, {
+        x: 90,
+        y: yPosition,
+        size: fontSize,
+        font: fontBold,
+        color: fontColor,
+      });
+
+      // Draw phone number
+      yPosition -= 20;
+      page.drawText(phoneNumber, {
+        x: 50,
+        y: yPosition,
+        size: fontSize,
+        font: font,
+        color: fontColor,
+      });
+
+      // Draw email
+      yPosition -= 20;
+      page.drawText(email, {
+        x: 50,
+        y: yPosition,
+        size: fontSize,
+        font: font,
+        color: fontColor,
+      });
+
+      // Draw address
+      yPosition -= 20;
+      page.drawText(address, {
+        x: 50,
+        y: yPosition,
+        size: fontSize,
+        font: font,
+        color: fontColor,
+      });
+
+      // Draw the content
+      yPosition -= 40;
+      page.drawText(result, {
+        x: 50,
+        y: yPosition,
+        size: fontSize,
+        font: font,
+        color: fontColor,
+        maxWidth: width - 100,
+      });
+
+      const pdfBytes = await pdfDoc.save();
+
+      console.log('PDF created successfully.');
+
+      // Create a blob to download it
+      const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'cover_letter.pdf';
+      link.click();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error exporting PDF:', error);
+    }
+  };
 
   return (
     <div className="Test">
-      {/* <div id='header'>
-        <div className="headerText">Perfect Fit Resumes and Cover Letters</div>
-        <img src={pfp} alt="Profile Picture" className="pfp" />
-      </div> */}
       <div id='mainBody'>
         <div id='centerThing'>
           <div id='stepsThing'>
@@ -163,13 +274,19 @@ function Home({ infoFilled }) {
                   .map((line, index) => (
                     <p key={index}>{line}</p>
                   ))}
+                {(!doneFavorite && isLoggedIn) && <button type='button' className='favoritesButton-home' onClick={() => handleFavoriting()}>&#9734;</button>}
+                {(doneFavorite) && <button type='button' className='favoritesButton-home' onClick={() => handleFavoriting()}>&#9733;</button>}
               </div>
             )}
           </div>
           <div id='centerCenterBot'>
-            <button type='button' className='OKbutton' onClick={handleOkClick}>
-              {step === 4 ? 'Export' : 'OK'}
-            </button>
+            {step != 4 && <button type='button' className='OKbutton' onClick={handleOkClick}>
+              {/* {((step === 4) ? 'Export' : 'OK')} */}
+              OK
+            </button>}
+            {(step == 4 && infoFilled && isLoggedIn && documentType == 'cover letter') && <button type='button' className='ExportButton' onClick={pdfExport}>
+              Export
+            </button>}
           </div>
           {(step === 2) && (
             <div className="file-upload">

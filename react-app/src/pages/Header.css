@@ -69,9 +69,9 @@
 }
 
 #homeButton,
-#historyButton {
+#favoritesButton {
     height: 9vh;
-    width: 8vw;
+    width: 10vw;
 
     background-color: #1a1a1a;
     /* border-style: solid; */
@@ -89,7 +89,7 @@
 }
 
 #homeButton:hover,
-#historyButton:hover {
+#favoritesButton:hover {
     background-color: #2b2b2b;
 }
 
@@ -99,8 +99,8 @@
     right: 23vw;
 }
 
-#historyButton {
+#favoritesButton {
     position: absolute;
     bottom: 0.5vh;
-    left: 48vw;
+    left: 49vw;
 }

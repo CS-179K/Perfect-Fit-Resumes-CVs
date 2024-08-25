@@ -53,14 +53,21 @@ def submit_data():
         person_description = data.get('personDescription')
         job_description = data.get('jobDescription')
 
-        prompt = "Don't give me any suggestions or notes or say 'Here is the " + document_type + "', just give me the " + document_type + " and nothing more"
+        prompt = "Don't give me any suggestions or notes or say 'Here is the " + document_type + "', just give me the " + document_type + " and nothing more. Begin with 'Dear Hiring Manager' immediately."
         prompt += "Using my resume/cover letter: " + person_description + "\n" + \
           "Create a " + document_type + "\n" + \
           "for this job: " + job_description
           
         result = get_response(prompt)
+        
+        instructionPrompt = "Give me just the answer, no need for a sentence. If you cannot find out or recognize it is not a job posting, say 'NO'\n"
+        prompt = "What is the job title for this job?: " + job_description
+        jobTitle = get_response(instructionPrompt + prompt)
+        
+        prompt = "What is the company of this job?: " + job_description
+        companyName = get_response(instructionPrompt + prompt)
 
-        return jsonify({"message": "Data received successfully!", "prompt": prompt, "result": result})
+        return jsonify({"message": "Data received successfully!", "prompt": prompt, "result": result, "jobTitle": jobTitle, "companyName": companyName})
 
     elif request.method == 'GET':
         # Handle GET request (if needed)
@@ -192,8 +199,6 @@ def submit_data_resume():
     workExperience = data.get('workExperience')
     skills = data.get('skills')
 
-    # prompt = "Don't give me any suggestions or notes or say 'Here is the " + document_type + "', just give me the " + document_type + " and nothing more"
-    # prompt = 'Hello'
     prompt = ''
     prompt += "Create a resume using my: " + \
         "Name: " + name + "\n" + \
@@ -208,6 +213,89 @@ def submit_data_resume():
     result = get_response(prompt)
 
     return jsonify({"message": "Data received successfully!", "prompt": prompt, "result": result})
+
+# Handle getting all the documents history
+@app.route('/api/favorites', methods=['GET', 'DELETE'])
+def handle_favorites():
+    if request.method == 'GET':
+        # Handle GET request
+        user_id = request.args.get('id')
+        if not user_id:
+            return jsonify({"error": "User ID not provided"}), 400
+
+        query = "SELECT document_id, user_id, document_type, content, created_at, job_title, company_name" + \
+            "\nFROM documents" + \
+            "\nWHERE user_id = " + user_id + \
+            "\nORDER BY created_at DESC"
+            
+        documents = sqlquery(query)
+            
+        if documents:
+            # Convert tuple list to list of dictionaries
+            documents_list = []
+            # print(documents)
+            
+            for doc in documents:
+                documents_list.append({
+                    "document_id": doc[0],
+                    "user_id": doc[1],
+                    "document_type": doc[2],
+                    "content": doc[3],
+                    "created_at": doc[4],
+                    "job_title": doc[5],
+                    "company_name": doc[6],
+                })
+            return jsonify({"documents": documents_list}), 200
+        else:
+            return jsonify({"error": "No documents found for this user"}), 404
+    elif request.method == 'DELETE':
+        # Handle DELETE request
+        data = request.get_json()
+        
+        if not data:
+            return jsonify({"error": "Invalid or no data provided"}), 400
+
+        user_id = data.get('user_id')
+        document_id = data.get('document_id')
+        
+        if not user_id or not document_id:
+            return jsonify({"error": "User ID and Document ID are required"}), 400
+
+
+        user_id = data.get('user_id')
+        document_id = data.get('document_id')
+        
+        # print(type(user_id), type(document_id))
+        
+        query = "DELETE FROM documents" + \
+            "\nWHERE user_id = " + str(user_id) + " AND document_id = " + str(document_id)
+            
+        sqlquery(query)
+        
+        return jsonify({"message": "Data updated successfully!"}), 200
+        
+@app.route('/api/favoriting', methods=['POST'])
+def handle_favoriting():
+    data = request.get_json()
+    
+    if not data:
+        return jsonify({"error": "Invalid or no data provided"}), 400
+
+    user_id = data.get('user_id')  
+    document_type = data.get('documentType')
+    content = data.get('result') 
+    job_title = data.get('jobTitle')
+    company_name = data.get('companyName')
+
+    if not all([user_id, document_type, content, job_title, company_name]):
+        return jsonify({"error": "Missing required fields"}), 400
+
+    query = "INSERT INTO documents (user_id, document_type, content, job_title, company_name)" + \
+        "\nVALUES (" + str(user_id) + ", '" + document_type + "', '" + content + "', '" + job_title + "', '" + company_name + "')"
+
+    sqlquery(query)
+    
+    return jsonify({"message": "Data submitted successfully"}), 200
     
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

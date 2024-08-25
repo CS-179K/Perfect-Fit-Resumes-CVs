@@ -46,14 +46,13 @@ function ResumePage() {
       workExperience: workExperience,
       skills: skills
     }).then(response => {
-      // console.log(response.data.prompt, response.data.message, response.data.result);
       console.log(response.data.result);
       setResult(response.data.result);
+      setIsPopupVisible(true);
     }).catch(error => {
       console.error('There was an error submitting the data!', error);
     });
     // setResult("WOAWEEE");
-    setIsPopupVisible(true);
   };
 
   const handleClosePopup = () => {
@@ -181,13 +180,12 @@ function ResultPopup({ result, onClose }) {
   return (
     <div className="popup-overlay">
       <div className="popup-content">
-        {/* <h2>IABHSDJHBASKJDHBSJ</h2> */}
-        <p>{result
+        {result
           .trim()
           .split('\n')
           .map((line, index) => (
-            <p key={index}>{line}</p>
-          ))}</p>
+            <p key={index} className="popup-line">{line}</p>
+          ))}
         <button onClick={onClose} className="close-popup-button">Close</button>
       </div>
     </div>

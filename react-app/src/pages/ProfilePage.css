@@ -101,7 +101,9 @@ label {
   height: 6vh;
   width: 6vw;
 
-  position: relative;
-  left: 91vw;
-  bottom: 9vh;
+  position: absolute;
+  /* left: 91vw; */
+  /* bottom: 9vh; */
+  right: 5vw;
+  top: 5vh;
 }

@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './ProfilePage.css';
 
-function ProfilePage({ userID, setInfoFilled }) {
-  const [address, setAddress] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [email, setEmail] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+function ProfilePage({ userID, setInfoFilled, address, setAddress, phoneNumber, setPhoneNumber, email, setEmail, firstName, setFirstName, lastName, setLastName }) {
+  // const [address, setAddress] = useState('');
+  // const [phoneNumber, setPhoneNumber] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [firstName, setFirstName] = useState('');
+  // const [lastName, setLastName] = useState('');
   const [major, setMajor] = useState('');
   const [university, setUniversity] = useState('');
   const [editMode, setEditMode] = useState(false);
@@ -27,7 +27,8 @@ function ProfilePage({ userID, setInfoFilled }) {
             setLastName(data.lastName);
             setMajor(data.major);
             setUniversity(data.university);
-            if (address != '' && phoneNumber != '' && email != '' && firstName != '' && lastName != '') {
+
+            if (data.address != '' && data.phoneNumber != '' && data.email != '' && data.firstName != '' && data.lastName != '') {
               setInfoFilled(true);
             }
             else {
@@ -72,16 +73,19 @@ function ProfilePage({ userID, setInfoFilled }) {
   };
 
   const handleEditClick = () => {
-    setEditMode(true);
+    setEditMode(!editMode);
   };
 
   return (
     <div className="Profile">
       <div id='mainBodyProfile'>
+        <button type='button' id='editButton' onClick={handleEditClick}>
+        {!editMode ? 'Edit' : 'Back'}
+        </button>
         {!editMode ? (
           <div>
             <h1 id='profileInfoTitle'>Profile Information</h1>
-            <button type='button' id='editButton' onClick={handleEditClick}>Edit</button>
+            {/* <button type='button' id='editButton' onClick={handleEditClick}>Edit</button> */}
             <div id='profileInfoDetails'>
               First Name: {firstName} <br />
               Last Name: {lastName} <br />
