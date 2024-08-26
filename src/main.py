@@ -53,7 +53,7 @@ def submit_data():
         person_description = data.get('personDescription')
         job_description = data.get('jobDescription')
 
-        prompt = "Don't give me any suggestions or notes or say 'Here is the " + document_type + "', just give me the " + document_type + " and nothing more. Begin with 'Dear Hiring Manager' immediately."
+        prompt = "Don't give me any suggestions or notes or say 'Here is the " + document_type + "', just give me the " + document_type + " and nothing more. Begin with 'Dear Hiring Manager' immediately. No need to sign off."
         prompt += "Using my resume/cover letter: " + person_description + "\n" + \
           "Create a " + document_type + "\n" + \
           "for this job: " + job_description
