@@ -1,7 +1,7 @@
 # Perfect Fit Resumes/CVs
 Perfect Fit Resumes/CVs is a web application designed to help job seekers create highly customized resumes and CVs that perfectly align their unique experiences and skills with the specific requirements of each job application. Using advanced AI APIs (tbd lol), the platform takes in personal career history, relevant skills, accomplishments, and qualifications to generate tailored documents. These customized resumes and CVs are optimized to successfully pass through automated resume parsers, stand out to hiring managers, and maximize the chances of securing job interviews. 
 
-## Usage
+<!-- ## Usage
 1. Go in folder src, run the test.py 
 ```bash
 python3 main.py
@@ -10,7 +10,7 @@ python3 main.py
 ```bash
 npm run dev
 ```
-3. go in browser using link: http://localhost:5173/
+3. go in browser using link: http://localhost:5173/ -->
 
 ## Features (highest priority to lowest priority)
 1. As a user, I want to match my skills and experiences to specific job descriptions, so I can create a resume that aligns perfectly with each job application. (Story points: 5)
@@ -53,7 +53,7 @@ npm run dev
 * Hugging Face Meta Llama 3 API
 * HTML/CSS
 
-## Installation
+## Installation and Usage
 
 ### Requirements
 - Git
