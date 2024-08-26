@@ -17,8 +17,8 @@ Perfect Fit Resumes/CVs is a web application designed to help job seekers create
 13. As a user, I want to be able to view my history of resumes/CVs and cover letter, so I can reapplying using relevant information and improve them (User points: 5)
 
 **Total story points: 46**<br>
-**Completed story points: 32**<br>
-**Remaing story points: 14**<br>
+**Completed story points: 46**<br>
+**Remaing story points: 0**<br>
 
 ## Non-functional Requirements
 - Safety and security requirement
@@ -41,6 +41,52 @@ Perfect Fit Resumes/CVs is a web application designed to help job seekers create
 * SQLite
 * Hugging Face Meta Llama 3 API
 * HTML/CSS
+
+## Installation
+
+### Requirements
+- Git
+- Node.js
+- npm
+
+### 1. Clone the repo
+Make sure to replace "username" with your Github username. 
+```bash
+git clone https://github.com/username/Perfect-Fit-Resumes-CVs.git.
+cd Perfect-Fit-Resumes-CVs
+```
+
+### 2. Install dependencies
+Frontend:
+```bash
+cd ../react-app
+npm install
+```
+
+At this precise juncture in the grand tapestry of the time-space continuum, I find myself delightfully perplexed by the intricate mysteries of the back end ahhhh:
+
+### 3. Start backend
+```bash
+cd ../src
+```
+
+Windows:
+```bash
+python main.py
+```
+
+Mac:
+```bash
+python3 main.py
+```
+
+### 4. Start frontend
+```bash
+cd ../react-app
+npm run dev
+```
+
+### 5. Access the website on: `http://localhost:5173/`.
 
 ## Architecture diagram
 ![Architecture Diagram](/Burndown/cs179karchitecture.jpg)
