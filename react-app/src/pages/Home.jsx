@@ -46,8 +46,7 @@ function Home({ infoFilled, userID, isLoggedIn, address, phoneNumber, email, fir
         personDescription: personDescription,
         jobDescription: jobDescription
       }).then(response => {
-        // console.log(response.data.prompt, response.data.message, response.data.result);
-        setResult(response.data.result); // Store the server response from POST request
+        setResult(response.data.result);
         setJobTitle(response.data.jobTitle);
         setCompanyName(response.data.companyName);
         setDoneGenerating(true);
@@ -139,7 +138,7 @@ function Home({ infoFilled, userID, isLoggedIn, address, phoneNumber, email, fir
 
       // Define font size and color
       const fontSize = 10;
-      const fontColor = rgb(0, 0, 0); 
+      const fontColor = rgb(0, 0, 0);
 
       // Define fonts
       const font = await pdfDoc.embedFont(StandardFonts.TimesRoman);
@@ -148,7 +147,7 @@ function Home({ infoFilled, userID, isLoggedIn, address, phoneNumber, email, fir
       const fontBoldItalics = await pdfDoc.embedFont(StandardFonts.TimesRomanBoldItalic);
 
       // Define starting position
-      let yPosition = height - 50; 
+      let yPosition = height - 50;
 
       // Draw first name
       page.drawText(firstName, {
@@ -162,7 +161,7 @@ function Home({ infoFilled, userID, isLoggedIn, address, phoneNumber, email, fir
       // Draw last name
       // yPosition -= 20;
       page.drawText(lastName, {
-        x: 90,
+        x: 50 + (firstName.length * 5.5),
         y: yPosition,
         size: fontSize,
         font: fontBold,
@@ -210,16 +209,41 @@ function Home({ infoFilled, userID, isLoggedIn, address, phoneNumber, email, fir
         maxWidth: width - 100,
       });
 
+      // Draw sincerely
+      yPosition -= result.length / 4;
+      page.drawText("Sincerely,", {
+        x: 50,
+        y: yPosition,
+        size: fontSize,
+        font: font,
+        color: fontColor,
+        maxWidth: width - 100,
+      });
+
+      // Draw sincerely
+      yPosition -= 20;
+      page.drawText(firstName + " " + lastName, {
+        x: 50,
+        y: yPosition,
+        size: fontSize,
+        font: font,
+        color: fontColor,
+        maxWidth: width - 100,
+      });
+
       const pdfBytes = await pdfDoc.save();
 
       console.log('PDF created successfully.');
+
+      let currentDate = new Date().toJSON().slice(0, 10);
+      console.log(currentDate);
 
       // Create a blob to download it
       const blob = new Blob([pdfBytes], { type: 'application/pdf' });
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.download = 'cover_letter.pdf';
+      link.download = currentDate + ' ' + jobTitle + ' at ' + companyName + '.pdf';
       link.click();
       window.URL.revokeObjectURL(url);
     } catch (error) {
