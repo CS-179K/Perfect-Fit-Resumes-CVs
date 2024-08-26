@@ -74,7 +74,7 @@ cd ../react-app
 npm install
 ```
 
-At this precise juncture in the grand tapestry of the time-space continuum, I find myself delightfully perplexed by the intricate mysteries of the back end ahhhh:
+At this precise juncture in the grand tapestry of the time-space continuum, I find myself admittedly perplexed by the intricate mysteries of the back end ahhhh:
 
 ### 3. Start backend
 ```bash
