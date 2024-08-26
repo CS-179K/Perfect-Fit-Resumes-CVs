@@ -291,7 +291,7 @@ def handle_favoriting():
         return jsonify({"error": "Missing required fields"}), 400
 
     query = "INSERT INTO documents (user_id, document_type, content, job_title, company_name)" + \
-        "\nVALUES (" + str(user_id) + ", '" + document_type + "', '" + content + "', '" + job_title + "', '" + company_name + "')"
+        "\nVALUES (" + str(user_id) + ", \"" + document_type + "\", \"" + content + "\", \"" + job_title + "\", \"" + company_name + "\")"
 
     sqlquery(query)
     

@@ -2,7 +2,7 @@ import './Home.css'
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
-import pdfToText from 'react-pdftotext' // Parsing PDF
+import pdfToText from 'react-pdftotext'
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib'
 
 function Home({ infoFilled, userID, isLoggedIn, address, phoneNumber, email, firstName, lastName }) {
@@ -210,7 +210,7 @@ function Home({ infoFilled, userID, isLoggedIn, address, phoneNumber, email, fir
       });
 
       // Draw sincerely
-      yPosition -= result.length / 4;
+      yPosition -= result.length / 4 + 20;
       page.drawText("Sincerely,", {
         x: 50,
         y: yPosition,

@@ -45,7 +45,8 @@
 }
 
 .document-item-delete-button,
-.document-item-view-button {
+.document-item-view-button,
+.document-item-export-button {
   margin-top: auto;
   padding: 10px 20px;
   color: white;
@@ -75,6 +76,18 @@
 
 .document-item-delete-button:hover {
   background-color: #6b1919;  
+}
+
+.document-item-export-button {
+  background-color: #1e1c24;
+  top: 5vh;
+  right: 12vw;
+}
+
+.document-item-export-button:hover {
+  background-color: #19171e;
+  top: 5vh;
+  right: 12vw;
 }
 
 .popup-favorites {

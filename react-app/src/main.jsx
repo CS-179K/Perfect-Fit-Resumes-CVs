@@ -56,7 +56,12 @@ const Main = () => {
           lastName={lastName} setLastName={setLastName} />} />
         <Route path="/resumebuild" element={<ResumeBuild />} />
         <Route path="/favorites" element={<Favorties
-          userID={userID} />} />
+          userID={userID}
+          address={address}
+          phoneNumber={phoneNumber}
+          email={email}
+          firstName={firstName}
+          lastName={lastName} />} />
         <Route path="*" element={<Home />} /> {/* Fallback route */}
       </Routes>
     </Router>
