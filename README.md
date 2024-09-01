@@ -53,7 +53,7 @@ npm run dev
 * ReactJS
 * SQLite
 * Hugging Face Meta Llama 3 API
-* HTML/CSS
+* Axios/Flasks
 
 ## Installation and Usage
 
