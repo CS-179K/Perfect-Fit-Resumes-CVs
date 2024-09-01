@@ -29,8 +29,8 @@ npm run dev
 14. As a user, I want to be able to view my list of favorited of resumes/CVs and cover letter, so I can reapplying using relevant information and improve them (User points: 3)
 15. As a user, I want to be able to remove my favorited resumes/CVs and cover letter from my favorites, so it doesn't clutter up my favorites with outdated resumes/CVs and cover letters (User points: 3)
 
-**Total story points: 47**<br>
-**Completed story points: 47**<br>
+**Total story points: 50**<br>
+**Completed story points: 50**<br>
 **Remaing story points: 0**<br>
 
 ## Non-functional Requirements
