@@ -26,7 +26,7 @@ npm run dev
 11. As a returning user, I want to sign in to my account so that my profile doesn't go to waste after a single use (Story points: 3)
 12. As a user without a resume, I want to be able to create a resume with guidance of AI, so that I can have the best resume for my job application. (Story points: 5)
 13. As a user, I want to be able to favorite resumes/CVs and cover letter, so I can store view them later and take pointers out of it (User points: 3)
-14. As a user, I want to be able to view my list of favorited of resumes/CVs and cover letter, so I can reapplying using relevant information and improve them (User points: 3)
+14. As a user, I want to be able to view my list of favorited of resumes/CVs and cover letter, so I can reapply using relevant information and improve them (User points: 3)
 15. As a user, I want to be able to remove my favorited resumes/CVs and cover letter from my favorites, so it doesn't clutter up my favorites with outdated resumes/CVs and cover letters (User points: 3)
 
 **Total story points: 50**<br>
