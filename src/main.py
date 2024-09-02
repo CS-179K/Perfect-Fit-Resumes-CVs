@@ -74,7 +74,7 @@ def submit_data():
         return jsonify({"message": "Data sent successfully!", "result": "Loading.."})
 
 # Handle getting and editing profile information
-@app.route('/api/profile', methods=['GET', 'POST'])
+@app.route('/database/profile', methods=['GET', 'POST'])
 def handle_profile():
     if request.method == 'POST':
         # Handle POST request
@@ -132,7 +132,7 @@ def handle_profile():
             return jsonify({"error": "User not found"}), 404
 
 # Handle logins
-@app.route('/api/login', methods=['POST'])
+@app.route('/database/login', methods=['POST'])
 def handle_login():
     data = request.json
     if not data:
@@ -155,7 +155,7 @@ def handle_login():
         return jsonify({"error": "Invalid username or password"}), 401
     
 # Handle sign ups
-@app.route('/api/signup', methods=['POST'])
+@app.route('/database/signup', methods=['POST'])
 def handle_signup():
     data = request.json
     if not data:
@@ -215,7 +215,7 @@ def submit_data_resume():
     return jsonify({"message": "Data received successfully!", "prompt": prompt, "result": result})
 
 # Handle getting all the documents history
-@app.route('/api/favorites', methods=['GET', 'DELETE'])
+@app.route('/database/favorites', methods=['GET', 'DELETE'])
 def handle_favorites():
     if request.method == 'GET':
         # Handle GET request
@@ -274,7 +274,7 @@ def handle_favorites():
         
         return jsonify({"message": "Data updated successfully!"}), 200
         
-@app.route('/api/favoriting', methods=['POST'])
+@app.route('/database/favoriting', methods=['POST'])
 def handle_favoriting():
     data = request.get_json()
     

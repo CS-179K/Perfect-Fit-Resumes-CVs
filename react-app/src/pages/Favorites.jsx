@@ -11,7 +11,7 @@ function Favorites({ userID, address, phoneNumber, email, firstName, lastName })
 
   useEffect(() => {
     if (userID) {
-      axios.get('http://localhost:5000/api/favorites', { params: { id: userID } })
+      axios.get('http://localhost:5000/database/favorites', { params: { id: userID } })
         .then(response => {
           setDocuments(response.data.documents);
           setLoading(false);
@@ -35,7 +35,7 @@ function Favorites({ userID, address, phoneNumber, email, firstName, lastName })
   };
 
   const handleDelete = (doc) => {
-    axios.delete("http://localhost:5000/api/favorites", {
+    axios.delete("http://localhost:5000/database/favorites", {
       data: {
         user_id: userID,
         document_id: doc.document_id

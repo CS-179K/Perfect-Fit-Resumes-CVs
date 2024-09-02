@@ -15,7 +15,7 @@ function ProfilePage({ userID, setInfoFilled, address, setAddress, phoneNumber, 
   useEffect(() => {
     if (userID) {
       // console.log(userID)
-      axios.get('http://localhost:5000/api/profile', { params: { id: userID } })
+      axios.get('http://localhost:5000/database/profile', { params: { id: userID } })
         .then(response => {
           const data = response.data;
           console.log(data)
@@ -55,7 +55,7 @@ function ProfilePage({ userID, setInfoFilled, address, setAddress, phoneNumber, 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    axios.post("http://localhost:5000/api/profile", {
+    axios.post("http://localhost:5000/database/profile", {
       id: userID,
       email: email,
       firstName: firstName,

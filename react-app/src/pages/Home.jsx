@@ -113,7 +113,7 @@ function Home({ infoFilled, userID, isLoggedIn, address, phoneNumber, email, fir
 
   const handleFavoriting = () => {
     if (!doneFavorite) {
-      axios.post("http://localhost:5000/api/favoriting", {
+      axios.post("http://localhost:5000/database/favoriting", {
         user_id: userID,
         documentType: documentType,
         result: result,
