@@ -76,7 +76,11 @@ cd ../react-app
 npm install
 ```
 
-At this precise juncture in the grand tapestry of the time-space continuum, I find myself admittedly perplexed by the intricate mysteries of the back end ahhhh:
+Backend:
+```bash
+pip install inference-client
+pip install python-dotenv
+```
 
 ### 3. Start backend
 ```bash
@@ -102,7 +106,7 @@ npm run dev
 ### 5. Access the website on: `http://localhost:5173/`.
 
 ## Architecture diagram
-![Architecture Diagram](/Burndown/cs179karchitecture.jpg)
+![Architecture Diagram](/Burndown/cs179karchitecturefinal.jpg)
 
 ## Burndown Chart
 ![Architecture Diagram](/Burndown/BDC0826.png)
