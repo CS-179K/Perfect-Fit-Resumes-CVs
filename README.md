@@ -1,6 +1,8 @@
 # Perfect Fit Resumes/CVs
 Perfect Fit Resumes/CVs is a web application designed to help job seekers create highly customized resumes and CVs that perfectly align their unique experiences and skills with the specific requirements of each job application. Using advanced Hugging Face Meta Llama 3 API, the platform takes in personal career history, relevant skills, accomplishments, and qualifications to generate tailored documents. These customized resumes and CVs are optimized to successfully pass through automated resume parsers, stand out to hiring managers, and maximize the chances of securing job interviews. 
 
+Final Demo Document: https://docs.google.com/document/d/1ZS103-cMoNJHkti2vNECUs_GlPOZ-jaO4jYbRhm2YII/edit?usp=sharing 
+
 <!-- ## Usage
 1. Go in folder src, run the test.py 
 ```bash
